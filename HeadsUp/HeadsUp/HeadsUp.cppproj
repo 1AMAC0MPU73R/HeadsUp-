@@ -164,5 +164,19 @@
     <Folder Include="Header" />
     <Folder Include="Source" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Header\alarm.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\headsup.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\time.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\headsup.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

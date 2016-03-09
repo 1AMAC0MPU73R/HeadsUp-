@@ -2,7 +2,7 @@
 
 
 #ifndef __ALARM_H_INCLUDED__
-#define __ALARM_H_INCLUDED__ 
+#define __HEADSUP_H__ 
 
 
 #define ALARM_TONE_0 0			/* ALARM DEFINITIONS */

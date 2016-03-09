@@ -7,11 +7,15 @@
  
 #include <avr/io.h>
 #include <util/delay.h>
+#include "headsup.h"
 
 
 using namespace std;
 
 
-void main(){
+int main(){
+	
+	Test_On_PortA0();
 
+	return 0;	
 }
