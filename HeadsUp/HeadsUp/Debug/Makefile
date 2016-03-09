@@ -39,7 +39,9 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../Source/headsup.cpp
+../Source/ds1305.cpp \
+../Source/headsup.cpp \
+../Source/time.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -49,16 +51,24 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-Source/headsup.o
+Source/ds1305.o \
+Source/headsup.o \
+Source/time.o
 
 OBJS_AS_ARGS +=  \
-Source/headsup.o
+Source/ds1305.o \
+Source/headsup.o \
+Source/time.o
 
 C_DEPS +=  \
-Source/headsup.d
+Source/ds1305.d \
+Source/headsup.d \
+Source/time.d
 
 C_DEPS_AS_ARGS +=  \
-Source/headsup.d
+Source/ds1305.d \
+Source/headsup.d \
+Source/time.d
 
 OUTPUT_FILE_PATH +=HeadsUp.elf
 
@@ -74,6 +84,10 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

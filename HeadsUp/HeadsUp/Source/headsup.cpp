@@ -16,6 +16,12 @@ using namespace std;
 int main(){
 	
 	Test_On_PortA0();
+	
+	Start_RTC();
+	
+	ds1305_Time dstTime;
+	
+	GetCurrentTime(&dstTime);
 
 	return 0;	
 }

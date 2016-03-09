@@ -10,6 +10,7 @@
 #include <util/delay.h>
 #include "ds1305.h"
 
+
 /* Slave Select */
 #define SS_PIN			PB4
 #define DD_SS_PIN		DDB4
@@ -111,4 +112,3 @@ void ds1305_WriteBlock(unsigned char iAddr, unsigned char *pBuffer, unsigned int
 	}
 	ds1305_spi_deselect();
 }
-
