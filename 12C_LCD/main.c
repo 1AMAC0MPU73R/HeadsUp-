@@ -29,10 +29,12 @@
 *
 *********************************************************************************************************
 */
-//#define F_CPU				4000000L		// 2 megaHz
+#define F_CPU				8000000L		// 8 megaHz
 
 #include <avr/io.h>
 #include <util/delay.h>
+
+/* Put the below in a header file */
 // #include <compat/twi.h>		// USE THIS LATER!!!! SUPER HELPFUL
 
 /* TWSR values (not bits) */
@@ -88,7 +90,7 @@ void TWI_INIT()
 	// Initialize I2C / TWI
 	PRR0 &= ~(1 << PRTWI);							// Do not set this bit, pg 46 atmega
 	TWCR &= ~(1 << TWIE);							// Do not set Interupt Enable for polling, pg 215
-	TWBR = 2;										// 100 kHz SCL, for 4 MHz internal clock
+	TWBR = 2;										// MUST BE SET TO 400 kHz SCL, I used a 8 MHz internal clock
 	TWSR &= ~(1 << TWPS1) | (1 << TWPS0);			// No prescalling
 }
 
@@ -185,17 +187,17 @@ void init_LCD()
 	TWI_StartCommunication();
 	TWI_TransmitData(SLA,TW_MT_SLA_ACK);
 	TWI_TransmitData(Comsend,TW_MT_DATA_ACK);
-	TWI_TransmitData(0x38,TW_MT_DATA_ACK);
+	TWI_TransmitData(0x38,TW_MT_DATA_ACK);						// Function Set: 8 bit bus mode, 2-line mode, single height font
 	_delay_ms(100);
-	TWI_TransmitData(0x39,TW_MT_DATA_ACK);
+	TWI_TransmitData(0x39,TW_MT_DATA_ACK);						// Use Extended instruction set
 	_delay_ms(100);
-	TWI_TransmitData(0x14,TW_MT_DATA_ACK);
-	TWI_TransmitData(0x78,TW_MT_DATA_ACK);
-	TWI_TransmitData(0x5E,TW_MT_DATA_ACK);
-	TWI_TransmitData(0x6D,TW_MT_DATA_ACK);
-	TWI_TransmitData(0x0C,TW_MT_DATA_ACK);
-	TWI_TransmitData(0x01,TW_MT_DATA_ACK);
-	TWI_TransmitData(0x06,TW_MT_DATA_ACK);
+	TWI_TransmitData(0x14,TW_MT_DATA_ACK);						// Set Internal Osc Freq
+	TWI_TransmitData(0x78,TW_MT_DATA_ACK);						// Contrast Set
+	TWI_TransmitData(0x5E,TW_MT_DATA_ACK);						// Power/Icon/Contrast Control
+	TWI_TransmitData(0x6D,TW_MT_DATA_ACK);						// Follower Control
+	TWI_TransmitData(0x0C,TW_MT_DATA_ACK);						// Display On/Off
+	TWI_TransmitData(0x01,TW_MT_DATA_ACK);						// Clear Display
+	TWI_TransmitData(0x06,TW_MT_DATA_ACK);						// Entry Mode Set: Cursor/Shift as characters input
 	_delay_ms(100);
 	TWI_STOP();
 
