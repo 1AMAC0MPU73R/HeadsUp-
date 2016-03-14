@@ -17,6 +17,8 @@ int main(){
 	
 	Test_On_PortA0();
 	
+	test_LCD_Screen();
+	
 	Start_RTC();
 	
 	ds1305_Time dstTime;

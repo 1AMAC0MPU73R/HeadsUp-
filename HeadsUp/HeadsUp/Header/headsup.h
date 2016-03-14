@@ -8,10 +8,10 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include "ds1305.h"
+#include "C0216CiZ.h"
 
 
-#define F_CPU	1000000				// CPU Freq = 1 MHz
-
+#define F_CPU				8000000L		// 8 megaHz
 
 void Test_On_PortA0();
 void Start_RTC();
