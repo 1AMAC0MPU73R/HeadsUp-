@@ -167,7 +167,7 @@ void init_LCD()
 	_delay_ms(100);
 	TWI_TransmitData(0x14,TW_MT_DATA_ACK);						// Set Internal Osc Freq
 	TWI_TransmitData(0x78,TW_MT_DATA_ACK);						// Contrast Set
-	TWI_TransmitData(0x5E,TW_MT_DATA_ACK);						// Power/Icon/Contrast Control
+	TWI_TransmitData(0x5D,TW_MT_DATA_ACK);						// Power/Icon/Contrast Control
 	TWI_TransmitData(0x6D,TW_MT_DATA_ACK);						// Follower Control
 	TWI_TransmitData(0x0C,TW_MT_DATA_ACK);						// Display On/Off
 	TWI_TransmitData(0x01,TW_MT_DATA_ACK);						// Clear Display
