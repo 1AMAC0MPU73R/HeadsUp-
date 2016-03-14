@@ -40,25 +40,6 @@ const char Comsend = 0x00;
 const char Datasend = 0x40;
 const char Line2 = 0xC0;
 
-
-// Function prototypes
-
-void TWI_ERROR(void)
-{
-	PORTD |= (1 << PIND2);		// toggle PIN 2, RED LED
-	_delay_ms(500);
-	PORTD &= ~(1 << PIND2);
-	_delay_ms(500);
-}
-
-void TWI_PassedStatusCheck(void)
-{
-	PORTD |= (1 << PIND3);		// toggle PIN 3, Green LED
-	_delay_ms(500);
-	PORTD &= ~(1 << PIND3);
-	_delay_ms(500);
-}
-
 void TWI_INIT()
 {
 	// Initialize I2C / TWI
@@ -188,11 +169,6 @@ void init_LCD()
 
 int test_LCD_Screen(void)
 {
-//	DDRD = 0b00001100;								// set pins 2 and 3 as output for LED checkin
-	//PORTD = 0b00000100;							// turn number 2 off, number 3 on 
-
-	_delay_ms(1000);								// 1 second delay
-
 	// START PROGRAM
 	TWI_INIT();
 
@@ -203,12 +179,12 @@ int test_LCD_Screen(void)
 	Show(text2);
 	_delay_ms(2500);
 
-//	init_LCD();
-//	_delay_ms(20);
-//	Show(text3);
-//	nextline();
-//	Show(text4);
-//	_delay_ms(3000);
+	init_LCD();
+	_delay_ms(20);
+	Show(text3);
+	nextline();
+	Show(text4);
+	_delay_ms(3000);
 
 	return 1;
 }
