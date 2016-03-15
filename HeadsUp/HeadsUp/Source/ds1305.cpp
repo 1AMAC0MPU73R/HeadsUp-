@@ -8,7 +8,7 @@
  
 #include <avr/io.h>
 #include <util/delay.h>
-#include "ds1305.h"
+#include "RTC.h"
 
 
 /* Slave Select */

@@ -15,15 +15,24 @@ using namespace std;
 
 int main(){
 	
-	Test_On_PortA0();
+	ds1305_Time dstTime;
+	lcd lcdNHD;
 	
-	test_LCD_Screen();
+
+	Test_On_PortA0();
+	lcdNHD.test_LCD_Screen();
 	
 	Start_RTC();
 	
-	ds1305_Time dstTime;
+	unsigned char seco[16];
 	
-	GetCurrentTime(&dstTime);
-
+	for(;;){
+		GetCurrentTime(&dstTime);
+		seco[0] = ((( dstTime.ucSeconds & 0xF0 ) >> 4 ) + '0');
+		seco[1] = (( dstTime.ucSeconds & 0xF ) + '0' );
+		lcdNHD.print(seco, LINE_TOP);
+		_delay_ms(1000);
+	}
+	
 	return 0;	
 }
