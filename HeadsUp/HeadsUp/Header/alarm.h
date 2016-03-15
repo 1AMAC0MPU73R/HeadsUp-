@@ -1,8 +1,8 @@
 /* ---------- A L A R M . H --------- */
 
 
-#ifndef __ALARM_H_INCLUDED__
-#define __HEADSUP_H__ 
+#ifndef _ALARM_H_
+#define _ALARM_H_
 
 
 #define ALARM_TONE_0 0			/* ALARM DEFINITIONS */
@@ -34,7 +34,7 @@ class time {
 
 	private:
 		time timActivation;							/* DATA MEMBERS */
-		tone tonAlarm
+		tone tonAlarm;
 };
 
 

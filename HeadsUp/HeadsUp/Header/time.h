@@ -65,7 +65,7 @@ class time {
 		hour hrHours;
 		minute mntMinutes;
 		second scdSeconds;
-		period prdAMPM
+		period prdAMPM;
 };
 
 

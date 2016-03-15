@@ -10,9 +10,6 @@
 #include "headsup.h"
 
 
-using namespace std;
-
-
 int main(){
 	
 	ds1305_Time dstTime;
@@ -56,14 +53,9 @@ int main(){
 		timo[9] = seco >> 8;
 		timo[10] = seco & 0x00FF;
 		lcdNHD.print(timo, LINE_TOP);
-
-				
-		//seco[6] = ((( dstTime.ucSeconds & 0xF0 ) >> 4 ) + '0');
-		//seco[7] = (( dstTime.ucSeconds & 0xF ) + '0' );
-		//lcdNHD.print(seco, LINE_TOP);
-		
 		_delay_ms(1000);
 	}
 	
-	return 0;	
+	return 0;
+
 }

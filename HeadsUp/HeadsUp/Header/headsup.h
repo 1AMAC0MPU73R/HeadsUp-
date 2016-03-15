@@ -1,17 +1,19 @@
 /* ---------- H E A D S U P . H --------- */
 
 
-#ifndef __HEADSUP_H__
-#define __HEADSUP_H__
+#ifndef _HEADSUP_H_
+#define _HEADSUP_H_
 
 
 #include <avr/io.h>
 #include <util/delay.h>
-#include "RTC.h"
-#include "LCD.h"
+
+#include "rtc.h"
+#include "lcd.h"
 
 
 #define F_CPU				8000000L		// 8 megaHz
+
 
 void Test_On_PortA0();
 void Start_RTC();
