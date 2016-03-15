@@ -30,14 +30,14 @@ class rtc{
 	public:
 		rtc( ){ ds1305_Init( ); }
 		ds1305_Time get( ){ return GetCurrentTime( ); }
-		void set( ds1305_Time dstSetTime ){ SetCurrentTime( dstSetTime ); }
+		void set( ds1305_Time* dstSetTime ){ SetCurrentTime( dstSetTime ); }
 
 	private:
 		void ds1305_Init( );
-		void ds1305_ReadBlock( unsigned char iAddr, unsigned char *pBuffer, unsigned int iCount );
-		void ds1305_WriteBlock( unsigned char iAddr, unsigned char *pBuffer, unsigned int iCount );
+		void ds1305_ReadBlock( unsigned char iAddr, unsigned char* pBuffer, unsigned int iCount );
+		void ds1305_WriteBlock( unsigned char iAddr, unsigned char* pBuffer, unsigned int iCount );
 		ds1305_Time GetCurrentTime( );
-		void SetCurrentTime( ds1305_Time dstSetTime );
+		void SetCurrentTime( ds1305_Time* dstSetTime );
 		unsigned char SPI_MasterTransmit( unsigned char cData );
 		void ds1305_spi_deselect( );
 		void ds1305_spi_select( );

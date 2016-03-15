@@ -12,7 +12,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration buildProperties="" id="de.innot.avreclipse.toolchain.winavr.base.1070028018" name="Default" parent="org.eclipse.cdt.build.core.emptycfg">
+				<configuration artifactName="${ProjName}" buildProperties="" description="" id="de.innot.avreclipse.toolchain.winavr.base.1070028018" name="Default" parent="org.eclipse.cdt.build.core.emptycfg">
 					<folderInfo id="de.innot.avreclipse.toolchain.winavr.base.1070028018.1600344390" name="/" resourcePath="">
 						<toolChain id="de.innot.avreclipse.toolchain.winavr.base.115407408" name="AVR-GCC Toolchain" superClass="de.innot.avreclipse.toolchain.winavr.base">
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.objcopy.flash.698046285" name="Generate HEX file for Flash memory" superClass="de.innot.avreclipse.toolchain.options.toolchain.objcopy.flash"/>
@@ -21,10 +21,16 @@
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.size.1970776992" name="Print Size" superClass="de.innot.avreclipse.toolchain.options.toolchain.size"/>
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.avrdude.1512448171" name="AVRDude" superClass="de.innot.avreclipse.toolchain.options.toolchain.avrdude"/>
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="de.innot.avreclipse.targetplatform.avr.354546437" name="AVR Cross-Target" osList="all" superClass="de.innot.avreclipse.targetplatform.avr"/>
-							<builder id="de.innot.avreclipse.target.builder.winavr.base.55024036" managedBuildOn="false" name="AVR GNU Make Builder.Default" superClass="de.innot.avreclipse.target.builder.winavr.base"/>
-							<tool id="de.innot.avreclipse.tool.assembler.winavr.base.1047554301" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.base"/>
-							<tool id="de.innot.avreclipse.tool.compiler.winavr.base.1096344294" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.base"/>
-							<tool id="de.innot.avreclipse.tool.cppcompiler.base.1831368617" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.base"/>
+							<builder id="de.innot.avreclipse.target.builder.winavr.base.55024036" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="AVR GNU Make Builder" superClass="de.innot.avreclipse.target.builder.winavr.base"/>
+							<tool id="de.innot.avreclipse.tool.assembler.winavr.base.1047554301" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.base">
+								<inputType id="de.innot.avreclipse.tool.assembler.input.802450159" superClass="de.innot.avreclipse.tool.assembler.input"/>
+							</tool>
+							<tool id="de.innot.avreclipse.tool.compiler.winavr.base.1096344294" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.base">
+								<inputType id="de.innot.avreclipse.compiler.winavr.input.1876998329" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
+							</tool>
+							<tool id="de.innot.avreclipse.tool.cppcompiler.base.1831368617" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.base">
+								<inputType id="de.innot.avreclipse.cppcompiler.input.2104711646" superClass="de.innot.avreclipse.cppcompiler.input"/>
+							</tool>
 							<tool id="de.innot.avreclipse.tool.linker.winavr.base.239026876" name="AVR C Linker" superClass="de.innot.avreclipse.tool.linker.winavr.base"/>
 							<tool id="de.innot.avreclipse.tool.cpplinker.base.1798703066" name="AVR C++ Linker" superClass="de.innot.avreclipse.tool.cpplinker.base"/>
 							<tool id="de.innot.avreclipse.tool.archiver.winavr.base.698316753" name="AVR Archiver" superClass="de.innot.avreclipse.tool.archiver.winavr.base"/>
@@ -42,4 +48,10 @@
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Default">
+			<resource resourceType="PROJECT" workspacePath="/HeadsUp"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

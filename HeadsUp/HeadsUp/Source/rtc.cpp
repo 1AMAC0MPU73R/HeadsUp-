@@ -3,18 +3,6 @@
 #include "rtc.h"
 
 
-
-
-/*
-*	 This routine selects the ds1305 device. Must be called
-*	before transferring data to the SPI port
-*
-*	Need to insure that this is CPHA = 1 due to the
-*	timing requirements of the part. If the SPI bus is shared
-*	with other devices, their Select routines should reset these
-*	parameters to their value.
-*	Raising the line enables the part
-*/
 void rtc::ds1305_spi_select( ) {
 
 	SPCR |= ( 1 << CPHA );
@@ -33,6 +21,7 @@ void rtc::ds1305_spi_deselect( ){
 
 }
 
+
 void rtc::ds1305_Init( ){
 
 	volatile char IOReg;
@@ -48,6 +37,7 @@ void rtc::ds1305_Init( ){
 
 	ds1305_spi_deselect( );
 }
+
 
 // This routine exchanges 1 byte with the SPI port. 
 unsigned char rtc::SPI_MasterTransmit( unsigned char cData )
@@ -99,7 +89,7 @@ void rtc::ds1305_WriteBlock(unsigned char iAddr, unsigned char *pBuffer, unsigne
 
 ds1305_Time rtc::GetCurrentTime( ){
 
-	ds1305_Time dstCurrent;
+	ds1305_Time* dstCurrent;
 
 
 	ds1305_ReadBlock( 0, ( unsigned char * )dstCurrent, sizeof( ds1305_Time ));
@@ -108,7 +98,7 @@ ds1305_Time rtc::GetCurrentTime( ){
 }
 
 
-void rtc::SetCurrentTime( ds1305_Time dstSetTime ){
+void rtc::SetCurrentTime( ds1305_Time* dstSetTime ){
 
 	ds1305_WriteBlock( 0, ( unsigned char * )dstSetTime, sizeof(ds1305_Time));
 }

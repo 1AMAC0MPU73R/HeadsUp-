@@ -12,38 +12,36 @@
 
 int main(){
 	
-	ds1305_Time dstTime;
 	ds1305_Time dstCurrentTime;
+	rtc rtcDS;
 	lcd lcdNHD;
 	
+
 	dstCurrentTime.ucSeconds = 0x00;
 	dstCurrentTime.ucMinutes = 0x39;
 	dstCurrentTime.ucHours = 0x10;
 	
-
 	Test_On_PortA0();
 	lcdNHD.test_LCD_Screen();
-	
-	Start_RTC();
-	
-	SetCurrentTime(&dstCurrentTime);
-	
+
+	rtcDS.set(&dstCurrentTime);
+
 	unsigned char timo[16] = {0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20};
 	uint16_t seco = 0x2020;
 	uint16_t mino = 0x20;
 	uint16_t houo = 0x20;
 	
 	for(;;){
-		GetCurrentTime(&dstTime);
+		dstCurrentTime = rtcDS.get();
 		seco &= 0x0000;
-		seco |= (( dstTime.ucSeconds & 0xF0 ) + 0x0300 ) << 4;
-		seco |= ( dstTime.ucSeconds & 0x0F) + 0x0030;
+		seco |= (( dstCurrentTime.ucSeconds & 0xF0 ) + 0x0300 ) << 4;
+		seco |= ( dstCurrentTime.ucSeconds & 0x0F) + 0x0030;
 		mino &= 0x0000;
-		mino |= (( dstTime.ucMinutes & 0xF0 ) + 0x0300 ) << 4;
-		mino |= ( dstTime.ucMinutes & 0x0F) + 0x0030;
+		mino |= (( dstCurrentTime.ucMinutes & 0xF0 ) + 0x0300 ) << 4;
+		mino |= ( dstCurrentTime.ucMinutes & 0x0F) + 0x0030;
 		houo &= 0x0000;
-		houo |= (( dstTime.ucHours & 0xF0 ) + 0x0300 ) << 4;
-		houo |= ( dstTime.ucHours & 0x0F) + 0x0030;
+		houo |= (( dstCurrentTime.ucHours & 0xF0 ) + 0x0300 ) << 4;
+		houo |= ( dstCurrentTime.ucHours & 0x0F) + 0x0030;
 		timo[3] = houo >> 8;
 		timo[4] = houo & 0x00FF;
 		timo[5] = ':';
