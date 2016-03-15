@@ -5,4 +5,4 @@
  *  Author: Andrew Gauvin
  */ 
 
-#include "ds1305.h"
+#include "RTC.h"

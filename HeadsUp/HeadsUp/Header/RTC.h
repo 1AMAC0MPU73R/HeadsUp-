@@ -1,13 +1,13 @@
 /*
- * spi_rtc.h
+ *  RTC.h
  *
  * Created: 3/4/2016 1:28:16 PM
- *  Author: Jack
+ * Author: Jack
  */ 
 
 
-#ifndef DS1305_H
-#define DS1305_H
+#ifndef _RTC_H_
+#define _RTC_H_
 
 
 //

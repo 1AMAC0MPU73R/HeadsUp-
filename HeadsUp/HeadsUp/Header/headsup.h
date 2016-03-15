@@ -7,8 +7,8 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
-#include "ds1305.h"
-#include "C0216CiZ.h"
+#include "RTC.h"
+#include "LCD.h"
 
 
 #define F_CPU				8000000L		// 8 megaHz

@@ -54,6 +54,18 @@
     </com_atmel_avrdbg_tool_avrdragon>
     <avrtoolinterface>JTAG</avrtoolinterface>
     <avrtoolinterfaceclock>200000</avrtoolinterfaceclock>
+    <com_atmel_avrdbg_tool_simulator>
+      <ToolOptions xmlns="">
+        <InterfaceProperties>
+        </InterfaceProperties>
+        <InterfaceName>
+        </InterfaceName>
+      </ToolOptions>
+      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolNumber xmlns="">
+      </ToolNumber>
+      <ToolName xmlns="">Simulator</ToolName>
+    </com_atmel_avrdbg_tool_simulator>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -154,8 +166,11 @@
         <avrgcccpp.linker.libraries.Libraries>
           <ListValues>
             <Value>libm</Value>
+            <Value>libm.a</Value>
+            <Value>libprintf_flt.a</Value>
           </ListValues>
         </avrgcccpp.linker.libraries.Libraries>
+        <avrgcccpp.linker.miscellaneous.LinkerFlags>-Wl,-u,vfprintf -lprintf_min</avrgcccpp.linker.miscellaneous.LinkerFlags>
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
@@ -168,13 +183,19 @@
     <Compile Include="Header\alarm.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Header\ds1305.h">
+    <Compile Include="Header\LCD.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\RTC.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Header\headsup.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Header\time.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\LCD.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\ds1305.cpp">

@@ -1,8 +1,8 @@
 /* ---------- T I M E . H --------- */
 
 
-#ifndef __TIME_H_INCLUDED__
-#define __TIME_H_INCLUDED__ 
+#ifndef _TIME_H_
+#define _TIME_H_
 
 
 #define PER_AM 0			/* TIME DEFINITIONS */
@@ -69,4 +69,4 @@ class time {
 };
 
 
-#endif 
+#endif
