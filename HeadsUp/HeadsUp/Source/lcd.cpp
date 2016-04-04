@@ -1,4 +1,4 @@
-#include "LCD.h"
+#include "lcd.h"
 
 
 lcd::lcd(){
@@ -22,16 +22,16 @@ void lcd::TWI_INIT(){
 
 
 void lcd::TWI_CheckStatusRegister(uint8_t Status){
-	
+
 	if( (TWSR & 0xF8) != Status ) {					// Error check for start condition
 	//	TWI_ERROR();								// Call error routine
 	}
-	
+
 }
 
 
 void lcd::TWI_ClearFlagAndEnable(){
-	
+
 	TWCR = (1 << TWINT) | (1 << TWEN);				// Clear Flag and Enable
 
 }
@@ -67,20 +67,16 @@ void lcd::TWI_TransmitData(uint8_t TwiData, uint8_t StatusCode){
 }
 
 
-void lcd::Show(unsigned char *text){
-	
-	int n, d;
-	d=0x00;
-	
+void lcd::Show(unsigned char* text){
 	
 	TWI_StartCommunication();
 	
-	TWI_TransmitData(SLA,TW_MT_SLA_ACK);
-	TWI_TransmitData(SEND_DATA,TW_MT_DATA_ACK);
-	for(n=0;n<16;n++){
-		TWI_TransmitData(*text,TW_MT_DATA_ACK);
+	TWI_TransmitData( SLA, TW_MT_SLA_ACK );
+	TWI_TransmitData( SEND_DATA, TW_MT_DATA_ACK );
+	for( int valN = 0; valN < LINE_SIZE; valN++ ){
+		TWI_TransmitData( *text, TW_MT_DATA_ACK );
 		++text;
-		}
+	}
 		
 	TWI_STOP();
 	
@@ -183,7 +179,7 @@ void lcd::test_LCD_Screen(){
 }
 
 
-void lcd::print(unsigned char *text, uint8_t valLine){
+void lcd::print(unsigned char* text, uint8_t valLine){
 		
 	if( valLine == LINE_TOP ){
 		SelectLine1();
