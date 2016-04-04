@@ -10,6 +10,8 @@
 
 #include "rtc.h"
 #include "lcd.h"
+#include "sdcard.h"
+#include "fat16.h"
 
 
 #define F_CPU 8000000L		// 8 megaHz

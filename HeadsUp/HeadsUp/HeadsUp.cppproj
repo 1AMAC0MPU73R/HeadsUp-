@@ -157,6 +157,7 @@
       <Value>../Header</Value>
     </ListValues>
   </avrgcccpp.compiler.directories.IncludePaths>
+  <avrgcccpp.compiler.optimization.level>Optimize (-O1)</avrgcccpp.compiler.optimization.level>
   <avrgcccpp.compiler.optimization.PackStructureMembers>True</avrgcccpp.compiler.optimization.PackStructureMembers>
   <avrgcccpp.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcccpp.compiler.optimization.AllocateBytesNeededForEnum>
   <avrgcccpp.compiler.optimization.DebugLevel>Default (-g2)</avrgcccpp.compiler.optimization.DebugLevel>
@@ -181,6 +182,9 @@
     <Compile Include="Header\alarm.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\fat16.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Header\headsup.h">
       <SubType>compile</SubType>
     </Compile>
@@ -190,7 +194,13 @@
     <Compile Include="Header\rtc.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\sdcard.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Header\time.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\fat16.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\headsup.cpp">
@@ -200,6 +210,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\rtc.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\sdcard.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\time.cpp">

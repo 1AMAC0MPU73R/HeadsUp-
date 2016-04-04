@@ -17,7 +17,6 @@ int main(){
 	rtc rtcDS;
 	unsigned char uchCurrenttime[ LINE_SIZE ] ;
 
-
 	rtmCurrent.ucSeconds = 0x50;
 	rtmCurrent.ucMinutes = 0x59;
 	rtmCurrent.ucHours = 0x72;
