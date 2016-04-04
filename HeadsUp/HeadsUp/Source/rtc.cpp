@@ -3,7 +3,20 @@
 #include "rtc.h"
 
 
-void rtc::ds1305_spi_select( ) {
+rtc::rtc(){
+	
+	uint8_t tc = 0;
+	uint8_t tc2 = 0xFF;
+
+
+	init();
+	write_block(0x0F,&tc,1);	// Enable timer and unwrite protect memory
+	write_block(0x82,&tc2,1);	// set 12hr format
+	
+}
+
+
+void rtc::spi_select( ) {
 
 	SPCR |= ( 1 << CPHA );
 	PORTB |= ( 1 << SS_PIN );
@@ -15,16 +28,16 @@ void rtc::ds1305_spi_select( ) {
 *	This routine de-selects the device by lowering the CE
 *	line. Must be done after the master transmit is complete
 */
-void rtc::ds1305_spi_deselect( ){
+void rtc::spi_deselect( ){
 
 	PORTB &= ~( 1 << SS_PIN );
 
 }
 
 
-void rtc::ds1305_Init( ){
+void rtc::init( ){
 
-	volatile char IOReg;
+	char IOReg;
 
 	/* Outputs: MOSI and SCK out, all others inputs */
 	DDRB = ( 1 << DD_MOSI_PIN ) | ( 1 << DD_SCK_PIN ) | ( 1 << DD_SS_PIN );
@@ -35,12 +48,12 @@ void rtc::ds1305_Init( ){
 	IOReg = SPSR;
 	IOReg = SPDR;
 
-	ds1305_spi_deselect( );
+	spi_deselect( );
 }
 
 
 // This routine exchanges 1 byte with the SPI port. 
-unsigned char rtc::SPI_MasterTransmit( unsigned char cData )
+unsigned char rtc::spi_master_transmit( unsigned char cData )
 {
 
 	SPDR  = cData;	// Set Pointer to beginning of String
@@ -57,15 +70,17 @@ unsigned char rtc::SPI_MasterTransmit( unsigned char cData )
 *	ReadBlock reads iCount bytes starting at cAddr into the
 *	buffer pBuffer
 */
-void rtc::ds1305_ReadBlock( unsigned char cAddr, unsigned char *pBuffer, unsigned int iCount ){
-	ds1305_spi_select( );
+void rtc::read_block( unsigned char cAddr, unsigned char *pBuffer, unsigned int iCount ){
+	
+	spi_select( );
 
-	SPI_MasterTransmit( cAddr );
+	spi_master_transmit( cAddr );
 	while( iCount-- ){
-		*pBuffer++ = SPI_MasterTransmit( 0 );
+		*pBuffer++ = spi_master_transmit( 0 );
 	}
 
-	ds1305_spi_deselect();
+	spi_deselect();
+
 }
 
 
@@ -74,32 +89,69 @@ void rtc::ds1305_ReadBlock( unsigned char cAddr, unsigned char *pBuffer, unsigne
 *  to the device at iAddr + 0x80. The device uses a split
 *  memory map where all write addresses are at address +0x80
 */
-void rtc::ds1305_WriteBlock(unsigned char iAddr, unsigned char *pBuffer, unsigned int iCount){
+void rtc::write_block(unsigned char iAddr, unsigned char *pBuffer, unsigned int iCount){
 
-	ds1305_spi_select( );
+	spi_select( );
 
-	SPI_MasterTransmit( iAddr + 0x80 );
+	spi_master_transmit( iAddr + 0x80 );
 	while( iCount-- ){
-		SPI_MasterTransmit( *pBuffer++ );
+		spi_master_transmit( *pBuffer++ );
 	}
 
-	ds1305_spi_deselect( );
+	spi_deselect( );
 }
 
 
-ds1305_Time rtc::GetCurrentTime( ){
+rtc_time rtc::get_time( ){
 
-	ds1305_Time* dstCurrent;
+	rtc_time rtmToConvert;
 
 
-	ds1305_ReadBlock( 0, ( unsigned char * )dstCurrent, sizeof( ds1305_Time ));
+	read_block( 0, ( unsigned char * )&rtmToConvert, sizeof( rtc_time ));
 
-	return dstCurrent;
+	return rtmToConvert;
 }
 
 
-void rtc::SetCurrentTime( ds1305_Time* dstSetTime ){
+void rtc::set_time( rtc_time* rtmSetTime ){
 
-	ds1305_WriteBlock( 0, ( unsigned char * )dstSetTime, sizeof(ds1305_Time));
+	write_block( 0, ( unsigned char * )rtmSetTime, sizeof(rtc_time));
+}
+
+
+void rtc::rtm_to_char( rtc_time rtmToConvert, unsigned char* uchToReturn, unsigned int valCharLen ){
+	
+	unsigned char uchTimeOut[ valCharLen ];
+	uint8_t valTimeLength = 8;
+	unsigned int valTextOffset = ( valCharLen - valTimeLength ) / 2;
+	uint16_t valSecs = 0x2020;
+	uint16_t valMins = 0x20;
+	uint16_t valHours = 0x20;
+	
+	
+	for(unsigned int valN = 0; valN < valCharLen; valN++ ){
+		uchTimeOut[valN] = ' ';
+	}
+
+	valSecs &= 0x0000;
+	valSecs |= (( rtmToConvert.ucSeconds & 0xF0 ) + 0x0300 ) << 4;
+	valSecs |= ( rtmToConvert.ucSeconds & 0x0F) + 0x0030;
+	valMins &= 0x0000;
+	valMins |= (( rtmToConvert.ucMinutes & 0xF0 ) + 0x0300 ) << 4;
+	valMins |= ( rtmToConvert.ucMinutes & 0x0F) + 0x0030;
+	valHours &= 0x0000;
+	valHours |= (( rtmToConvert.ucHours & 0x10 ) + 0x0300 ) << 4;
+	valHours |= ( rtmToConvert.ucHours & 0x0F) + 0x0030;
+	uchTimeOut[valTextOffset] = valHours >> 8;
+	uchTimeOut[valTextOffset + 1] = valHours & 0x00FF;
+	uchTimeOut[valTextOffset + 2] = ':';
+	uchTimeOut[valTextOffset + 3] = valMins >> 8;
+	uchTimeOut[valTextOffset + 4] = valMins & 0x00FF;
+	uchTimeOut[valTextOffset + 5] = ':';
+	uchTimeOut[valTextOffset + 6] = valSecs >> 8;
+	uchTimeOut[valTextOffset + 7] = valSecs & 0x00FF;
+	
+	memcpy( uchToReturn, uchTimeOut, valCharLen );
+
 }
 

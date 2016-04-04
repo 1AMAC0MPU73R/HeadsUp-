@@ -12,11 +12,10 @@
 #include "lcd.h"
 
 
-#define F_CPU				8000000L		// 8 megaHz
+#define F_CPU 8000000L		// 8 megaHz
 
 
 void Test_On_PortA0();
-void Start_RTC();
 
 
 void Test_On_PortA0(){
@@ -28,17 +27,6 @@ void Test_On_PortA0(){
 	PORTA &= ~( 1 << PINA0);
 	_delay_ms(250);
 	PORTA |= ( 1 << PINA0);
-}
-
-
-void Start_RTC(){
-	
-	uint8_t tc = 0;
-
-
-	ds1305_Init();
-	ds1305_WriteBlock(0x0F,&tc,1);	// Enable timer and unwrite protect memory
-	
 }
 
 

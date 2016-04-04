@@ -23,6 +23,7 @@
 #define SEND_COMMAND 0x00
 #define SEND_DATA 0x40
 
+#define LINE_SIZE 16
 #define LINE_1 0x80
 #define LINE_2 0xC0
 #define LINE_TOP 0
@@ -36,7 +37,7 @@ class lcd{
 		
 		void test_LCD_Screen();
 		
-		void print(unsigned char *text, uint8_t valLine);
+		void print(unsigned char* text, uint8_t valLine);
 
 	private:
 		void init_LCD();
@@ -48,7 +49,6 @@ class lcd{
 		void TWI_StartCommunication();
 		void TWI_TransmitData(uint8_t TwiData, uint8_t StatusCode);
 		void Show(unsigned char *text);
-		//void nextline();
 		void SelectLine1();
 		void SelectLine2();
 

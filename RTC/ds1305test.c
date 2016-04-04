@@ -53,10 +53,10 @@ char *pDates[] = { "Inv","Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
 
 
 //
-// This function outputs a ds1305_Time structure to the console.
+// This function outputs a rtc_time structure to the console.
 //
 //
-void OutputTimeDate(ds1305_Time *ptd)
+void OutputTimeDate(rtc_time *ptd)
 {
 	// Start by outputting date fields
 	
@@ -84,26 +84,26 @@ void OutputTimeDate(ds1305_Time *ptd)
 //
 int main()
 {
-	ds1305_Time dsTime;
+	rtc_time rtmime;
 	unsigned char LastSeconds;
 	unsigned char tc;
 	
 	//puts("ds1305t\n");
-	ds1305_Init();
+	init();
 	//
 	// Enable timer and unwrite protect memory
 	//
 	tc = 0;
-	ds1305_WriteBlock(0x0F,&tc,1);
+	write_block(0x0F,&tc,1);
 	
 	
 	do
 	{
-		GetCurrentTime(&dsTime);
-		if(LastSeconds != dsTime.ucSeconds)
+		get_time(&rtmime);
+		if(LastSeconds != rtmime.ucSeconds)
 		{
-			//OutputTimeDate(&dsTime);
-			LastSeconds = dsTime.ucSeconds;
+			//OutputTimeDate(&rtmime);
+			LastSeconds = rtmime.ucSeconds;
 		}
 		
 	} while (1);

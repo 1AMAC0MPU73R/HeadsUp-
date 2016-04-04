@@ -1,6 +1,8 @@
 #ifndef _RTC_H_
 #define _RTC_H_
 
+#include <string.h>
+
 
 #define SS_PIN			PB4		/* Slave Select */
 #define DD_SS_PIN		DDB4
@@ -12,10 +14,7 @@
 #define DD_SCK_PIN		DDB7
 
 
-typedef ds1305_Time ds1305_BCDTime;
-
-
-typedef struct _ds1305_Time{
+struct rtc_time{
 	unsigned char ucSeconds;
 	unsigned char ucMinutes;
 	unsigned char ucHours;
@@ -23,24 +22,25 @@ typedef struct _ds1305_Time{
 	unsigned char ucDate;
 	unsigned char ucMonth;
 	unsigned char ucYear;
-} ds1305_Time;
+};
 
 class rtc{
 
 	public:
-		rtc( ){ ds1305_Init( ); }
-		ds1305_Time get( ){ return GetCurrentTime( ); }
-		void set( ds1305_Time* dstSetTime ){ SetCurrentTime( dstSetTime ); }
+		rtc( );
+		rtc_time get( ){ return get_time( ); }
+		void set( rtc_time* rtmSetTime ){ set_time( rtmSetTime ); }
+		void rtm_to_char( rtc_time rtmToConvert, unsigned char* uchToReturn, unsigned int valCharLen );
 
 	private:
-		void ds1305_Init( );
-		void ds1305_ReadBlock( unsigned char iAddr, unsigned char* pBuffer, unsigned int iCount );
-		void ds1305_WriteBlock( unsigned char iAddr, unsigned char* pBuffer, unsigned int iCount );
-		ds1305_Time GetCurrentTime( );
-		void SetCurrentTime( ds1305_Time* dstSetTime );
-		unsigned char SPI_MasterTransmit( unsigned char cData );
-		void ds1305_spi_deselect( );
-		void ds1305_spi_select( );
+		void init( );
+		void read_block( unsigned char iAddr, unsigned char* pBuffer, unsigned int iCount );
+		void write_block( unsigned char iAddr, unsigned char* pBuffer, unsigned int iCount );
+		rtc_time get_time( );
+		void set_time( rtc_time* rtmSetTime );
+		unsigned char spi_master_transmit( unsigned char cData );
+		void spi_deselect( );
+		void spi_select( );
 };
 
 
