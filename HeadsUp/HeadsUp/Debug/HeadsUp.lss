@@ -752,7 +752,7 @@ void lcd::test_LCD_Screen(){
      4aa:	0d 92       	st	X+, r0
      4ac:	8a 95       	dec	r24
      4ae:	e1 f7       	brne	.-8      	; 0x4a8 <_ZN3lcd15test_LCD_ScreenEv+0x24>
-	unsigned char text2[]={"! TEST LINE 2 !-"};
+	unsigned char text2[]={"! TEST LINE 3 !-"};
      4b0:	81 e1       	ldi	r24, 0x11	; 17
      4b2:	e1 e1       	ldi	r30, 0x11	; 17
      4b4:	f1 e0       	ldi	r31, 0x01	; 1

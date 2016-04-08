@@ -12,20 +12,15 @@
 #include <util/delay.h>
 
 #include "fat16.h"
+#include "spi.h"
 
-#define SPI_DDR DDRB
-#define SPI_PORT PORTB
-#define MOSI (1<<PB5)
-#define MISO (1<<PB6)
-#define SCK (1<<PB7)
-
+/* Note: these macros below, are the same as functions create already 
+*		 in spi.c
+*/
 #define CS_DDR DDRB
 #define CS (1<<PB4)
 #define CS_ENABLE() (PORTB &= ~CS)
 #define CS_DISABLE() (PORTB |= CS)
-
-void SPI_init();
-unsigned char SPI_write(unsigned char ch);
 
 unsigned char SD_command(unsigned char cmd, unsigned long arg, unsigned char crc, unsigned char read);
 char SD_init();
@@ -35,5 +30,6 @@ void fat16_seek(unsigned long offset);
 char fat16_read(unsigned char bytes);
 
 int sd_display_file();
+
 
 #endif /* SDCARD_H_ */

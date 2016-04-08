@@ -16,7 +16,7 @@ Source/headsup.d Source/headsup.o: ../Source/headsup.cpp \
  ../Header/headsup.h ../Header/rtc.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\4.9.2\include\stddef.h \
- ../Header/lcd.h ../Header/sdcard.h ../Header/fat16.h
+ ../Header/lcd.h ../Header/sdcard.h ../Header/fat16.h ../Header/spi.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -59,3 +59,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\
 ../Header/sdcard.h:
 
 ../Header/fat16.h:
+
+../Header/spi.h:

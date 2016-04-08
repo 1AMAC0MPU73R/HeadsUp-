@@ -75,10 +75,6 @@ Discarded input sections
  .text          0x00000000        0x0 Source/sdcard.o
  .data          0x00000000        0x0 Source/sdcard.o
  .bss           0x00000000        0x0 Source/sdcard.o
- .text._Z8SPI_initv
-                0x00000000       0x10 Source/sdcard.o
- .text._Z9SPI_writeh
-                0x00000000        0xc Source/sdcard.o
  .text._Z10SD_commandhmhh
                 0x00000000       0xbc Source/sdcard.o
  .text._Z7SD_initv
@@ -96,16 +92,16 @@ Discarded input sections
  .bss.sd_pos    0x00000000        0x2 Source/sdcard.o
  .bss.sd_sector
                 0x00000000        0x4 Source/sdcard.o
- .debug_info    0x00000000      0x723 Source/sdcard.o
- .debug_abbrev  0x00000000      0x245 Source/sdcard.o
- .debug_loc     0x00000000      0x75b Source/sdcard.o
+ .debug_info    0x00000000      0x702 Source/sdcard.o
+ .debug_abbrev  0x00000000      0x221 Source/sdcard.o
+ .debug_loc     0x00000000      0x73c Source/sdcard.o
  .debug_aranges
-                0x00000000       0x58 Source/sdcard.o
- .debug_ranges  0x00000000       0x48 Source/sdcard.o
- .debug_line    0x00000000      0x443 Source/sdcard.o
- .debug_str     0x00000000      0x404 Source/sdcard.o
+                0x00000000       0x48 Source/sdcard.o
+ .debug_ranges  0x00000000       0x38 Source/sdcard.o
+ .debug_line    0x00000000      0x3f8 Source/sdcard.o
+ .debug_str     0x00000000      0x419 Source/sdcard.o
  .comment       0x00000000       0x31 Source/sdcard.o
- .debug_frame   0x00000000      0x154 Source/sdcard.o
+ .debug_frame   0x00000000      0x134 Source/sdcard.o
  .text          0x00000000        0x0 Source/spi.o
  .data          0x00000000        0x0 Source/spi.o
  .bss           0x00000000        0x0 Source/spi.o

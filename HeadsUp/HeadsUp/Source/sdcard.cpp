@@ -5,20 +5,6 @@
 #include "fat16.h"
 #include "sdcard.h"
 
-void SPI_init() {
-	CS_DDR |= CS; // SD card circuit select as output
-	SPI_DDR |= MOSI + SCK; // MOSI and SCK as outputs
-	SPI_PORT |= MISO; // pullup in MISO, might not be needed
-	
-	// Enable SPI, master, set clock rate fck/128
-	SPCR = (1<<SPE) | (1<<MSTR) | (1<<SPR0) | (1<<SPR1);
-}
-
-unsigned char SPI_write(unsigned char ch) {
-	SPDR = ch;
-	while(!(SPSR & (1<<SPIF))) {}
-	return SPDR;
-}
 
 unsigned char SD_command(unsigned char cmd, unsigned long arg, unsigned char crc, unsigned char read) {
 	unsigned char i, buffer[32], ret = 0xFF;
@@ -27,15 +13,15 @@ unsigned char SD_command(unsigned char cmd, unsigned long arg, unsigned char crc
 	//uwrite_hex(cmd);
 	
 	CS_ENABLE();
-	SPI_write(cmd);
-	SPI_write(arg>>24);
-	SPI_write(arg>>16);
-	SPI_write(arg>>8);
-	SPI_write(arg);
-	SPI_write(crc);
+	spi_master_transmit(cmd);
+	spi_master_transmit(arg>>24);
+	spi_master_transmit(arg>>16);
+	spi_master_transmit(arg>>8);
+	spi_master_transmit(arg);
+	spi_master_transmit(crc);
 	
 	for(i=0; i<read; i++)
-	buffer[i] = SPI_write(0xFF);
+	buffer[i] = spi_master_transmit(0xFF);
 	
 	CS_DISABLE();
 	
@@ -61,7 +47,7 @@ char SD_init() {
 	// ]r:10
 	CS_DISABLE();
 	for(i=0; i<10; i++) // idle for 1 bytes / 80 clocks
-	SPI_write(0xFF);
+	spi_master_transmit(0xFF);
 	
 	// [0x40 0x00 0x00 0x00 0x00 0x95 r:8] until we get "1"
 	for(i=0; i<10 && SD_command(0x40, 0x00000000, 0x95, 8) != 1; i++)
@@ -90,29 +76,29 @@ void SD_read(unsigned long sector, unsigned short offset, unsigned char * buffer
 	unsigned short i, pos = 0;
 	
 	CS_ENABLE();
-	SPI_write(0x51);
-	SPI_write(sector>>15); // sector*512 >> 24
-	SPI_write(sector>>7);  // sector*512 >> 16
-	SPI_write(sector<<1);  // sector*512 >> 8
-	SPI_write(0);          // sector*512
-	SPI_write(0xFF);
+	spi_master_transmit(0x51);
+	spi_master_transmit(sector>>15); // sector*512 >> 24
+	spi_master_transmit(sector>>7);  // sector*512 >> 16
+	spi_master_transmit(sector<<1);  // sector*512 >> 8
+	spi_master_transmit(0);          // sector*512
+	spi_master_transmit(0xFF);
 	
-	for(i=0; i<100 && SPI_write(0xFF) != 0x00; i++) {} // wait for 0
+	for(i=0; i<100 && spi_master_transmit(0xFF) != 0x00; i++) {} // wait for 0
 	
-	for(i=0; i<100 && SPI_write(0xFF) != 0xFE; i++) {} // wait for data start
+	for(i=0; i<100 && spi_master_transmit(0xFF) != 0xFE; i++) {} // wait for data start
 	
 	for(i=0; i<offset; i++) // "skip" bytes
-	SPI_write(0xFF);
+	spi_master_transmit(0xFF);
 	
 	for(i=0; i<len; i++) // read len bytes
-	buffer[i] = SPI_write(0xFF);
+	buffer[i] = spi_master_transmit(0xFF);
 	
 	for(i+=offset; i<512; i++) // "skip" again
-	SPI_write(0xFF);
+	spi_master_transmit(0xFF);
 	
 	// skip checksum
-	SPI_write(0xFF);
-	SPI_write(0xFF);
+	spi_master_transmit(0xFF);
+	spi_master_transmit(0xFF);
 
 	CS_DISABLE();
 }
@@ -139,7 +125,7 @@ int sd_display_file() {
 	char ret;
 	short offset = 0x1B0;
 
-	SPI_init();
+	spi_init();
 	
 	//uwrite_str("Start\r\n");
 	
