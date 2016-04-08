@@ -35,4 +35,5 @@ void TWI_STOP();
 void TWI_StartCommunication();
 void TWI_TransmitData(uint8_t TwiData, uint8_t StatusCode);
 
+
 #endif /* TWI_H_ */

@@ -12,6 +12,8 @@ Source\rtc.cpp
 
 Source\sdcard.cpp
 
+Source\spi.cpp
+
 Source\time.cpp
 
 Source\twi.cpp

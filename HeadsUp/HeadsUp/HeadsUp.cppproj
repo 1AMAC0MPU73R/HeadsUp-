@@ -197,6 +197,9 @@
     <Compile Include="Header\sdcard.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\spi.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Header\time.h">
       <SubType>compile</SubType>
     </Compile>
@@ -216,6 +219,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\sdcard.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\spi.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\time.cpp">

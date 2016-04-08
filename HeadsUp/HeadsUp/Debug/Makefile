@@ -44,6 +44,7 @@ C_SRCS +=  \
 ../Source/lcd.cpp \
 ../Source/rtc.cpp \
 ../Source/sdcard.cpp \
+../Source/spi.cpp \
 ../Source/time.cpp \
 ../Source/twi.cpp
 
@@ -60,6 +61,7 @@ Source/headsup.o \
 Source/lcd.o \
 Source/rtc.o \
 Source/sdcard.o \
+Source/spi.o \
 Source/time.o \
 Source/twi.o
 
@@ -69,6 +71,7 @@ Source/headsup.o \
 Source/lcd.o \
 Source/rtc.o \
 Source/sdcard.o \
+Source/spi.o \
 Source/time.o \
 Source/twi.o
 
@@ -78,6 +81,7 @@ Source/headsup.d \
 Source/lcd.d \
 Source/rtc.d \
 Source/sdcard.d \
+Source/spi.d \
 Source/time.d \
 Source/twi.d
 
@@ -87,6 +91,7 @@ Source/headsup.d \
 Source/lcd.d \
 Source/rtc.d \
 Source/sdcard.d \
+Source/spi.d \
 Source/time.d \
 Source/twi.d
 
@@ -104,6 +109,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

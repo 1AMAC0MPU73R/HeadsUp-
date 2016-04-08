@@ -1,6 +1,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include "rtc.h"
+#include "spi.h"
 
 
 rtc::rtc(){
@@ -9,60 +10,10 @@ rtc::rtc(){
 	uint8_t tc2 = 0xFF;
 
 
-	init();
+	spi_init();
 	write_block(0x0F,&tc,1);	// Enable timer and unwrite protect memory
 	write_block(0x82,&tc2,1);	// set 12hr format
 	
-}
-
-
-void rtc::spi_select( ) {
-
-	SPCR |= ( 1 << CPHA );
-	PORTB |= ( 1 << SS_PIN );
-
-}
-
-
-/*
-*	This routine de-selects the device by lowering the CE
-*	line. Must be done after the master transmit is complete
-*/
-void rtc::spi_deselect( ){
-
-	PORTB &= ~( 1 << SS_PIN );
-
-}
-
-
-void rtc::init( ){
-
-	char IOReg;
-
-	/* Outputs: MOSI and SCK out, all others inputs */
-	DDRB = ( 1 << DD_MOSI_PIN ) | ( 1 << DD_SCK_PIN ) | ( 1 << DD_SS_PIN );
-	/* Enable SPI, Master, CPOL=0, CPHA=1, set clock rate fck/16 */
-	SPCR = ( 1 << SPE ) | ( 1 << MSTR ) | ( 1 << SPR0 );	// POSSIBLE ERROR: PULLING DATA HIGH
-	
-	/* Clear the SPIF bit in SPSR */
-	IOReg = SPSR;
-	IOReg = SPDR;
-
-	spi_deselect( );
-}
-
-
-// This routine exchanges 1 byte with the SPI port. 
-unsigned char rtc::spi_master_transmit( unsigned char cData )
-{
-
-	SPDR  = cData;	// Set Pointer to beginning of String
-	/* wait until Char is sent */
-	while ( ! (SPSR & ( 1 << SPIF ))){
-		;	
-	}
-
-	return SPDR;
 }
 
 
