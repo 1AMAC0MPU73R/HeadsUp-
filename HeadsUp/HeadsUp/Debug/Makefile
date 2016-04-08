@@ -44,7 +44,8 @@ C_SRCS +=  \
 ../Source/lcd.cpp \
 ../Source/rtc.cpp \
 ../Source/sdcard.cpp \
-../Source/time.cpp
+../Source/time.cpp \
+../Source/twi.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -59,7 +60,8 @@ Source/headsup.o \
 Source/lcd.o \
 Source/rtc.o \
 Source/sdcard.o \
-Source/time.o
+Source/time.o \
+Source/twi.o
 
 OBJS_AS_ARGS +=  \
 Source/fat16.o \
@@ -67,7 +69,8 @@ Source/headsup.o \
 Source/lcd.o \
 Source/rtc.o \
 Source/sdcard.o \
-Source/time.o
+Source/time.o \
+Source/twi.o
 
 C_DEPS +=  \
 Source/fat16.d \
@@ -75,7 +78,8 @@ Source/headsup.d \
 Source/lcd.d \
 Source/rtc.d \
 Source/sdcard.d \
-Source/time.d
+Source/time.d \
+Source/twi.d
 
 C_DEPS_AS_ARGS +=  \
 Source/fat16.d \
@@ -83,7 +87,8 @@ Source/headsup.d \
 Source/lcd.d \
 Source/rtc.d \
 Source/sdcard.d \
-Source/time.d
+Source/time.d \
+Source/twi.d
 
 OUTPUT_FILE_PATH +=HeadsUp.elf
 
@@ -99,6 +104,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
