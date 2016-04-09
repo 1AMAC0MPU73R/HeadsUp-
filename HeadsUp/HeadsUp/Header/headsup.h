@@ -12,6 +12,7 @@
 #include "lcd.h"
 #include "sdcard.h"
 #include "fat16.h"
+#include "vs1011eCommunication.h"
 
 
 #define F_CPU 8000000L		// 8 megaHz

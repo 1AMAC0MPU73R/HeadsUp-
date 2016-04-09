@@ -105,6 +105,8 @@ Discarded input sections
  .text          0x00000000        0x0 Source/spi.o
  .data          0x00000000        0x0 Source/spi.o
  .bss           0x00000000        0x0 Source/spi.o
+ .text._Z15spi_master_readv
+                0x00000000        0xa Source/spi.o
  .text          0x00000000        0x0 Source/time.o
  .data          0x00000000        0x0 Source/time.o
  .bss           0x00000000        0x0 Source/time.o
@@ -124,6 +126,15 @@ Discarded input sections
                 0x00000000        0x8 Source/twi.o
  .text._Z29TWI_ClearFlagAndEnableWithAckv
                 0x00000000        0x8 Source/twi.o
+ .text          0x00000000        0x0 Source/vs1011eCommunication.o
+ .data          0x00000000        0x0 Source/vs1011eCommunication.o
+ .bss           0x00000000        0x0 Source/vs1011eCommunication.o
+ .text._Z16vs1011_send_datah
+                0x00000000       0x18 Source/vs1011eCommunication.o
+ .text._Z7ReadScih
+                0x00000000       0x32 Source/vs1011eCommunication.o
+ .text._Z8WriteSdiPKhh
+                0x00000000       0x44 Source/vs1011eCommunication.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libprintf_flt.a(vfprintf_flt.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libprintf_flt.a(vfprintf_flt.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libprintf_flt.a(vfprintf_flt.o)
@@ -261,6 +272,7 @@ LOAD Source/sdcard.o
 LOAD Source/spi.o
 LOAD Source/time.o
 LOAD Source/twi.o
+LOAD Source/vs1011eCommunication.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libm.a
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libm.a
@@ -366,7 +378,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1244
+.text           0x00000000     0x1320
  *(.vectors)
  .vectors       0x00000000       0x8c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51/crtatmega1284p.o
                 0x00000000                __vector_default
@@ -465,102 +477,117 @@ END GROUP
  .text._Z14Test_On_PortA0v
                 0x000001cc       0x22 Source/headsup.o
                 0x000001cc                _Z14Test_On_PortA0v
- .text.main     0x000001ee       0xbe Source/headsup.o
+ .text.main     0x000001ee       0xc6 Source/headsup.o
                 0x000001ee                main
  .text._ZN3lcd4ShowEPh
-                0x000002ac       0x36 Source/lcd.o
-                0x000002ac                _ZN3lcd4ShowEPh
+                0x000002b4       0x36 Source/lcd.o
+                0x000002b4                _ZN3lcd4ShowEPh
  .text._ZN3lcd11SelectLine1Ev
-                0x000002e2       0x18 Source/lcd.o
-                0x000002e2                _ZN3lcd11SelectLine1Ev
+                0x000002ea       0x18 Source/lcd.o
+                0x000002ea                _ZN3lcd11SelectLine1Ev
  .text._ZN3lcd11SelectLine2Ev
-                0x000002fa       0x18 Source/lcd.o
-                0x000002fa                _ZN3lcd11SelectLine2Ev
+                0x00000302       0x18 Source/lcd.o
+                0x00000302                _ZN3lcd11SelectLine2Ev
  .text._ZN3lcd5CGRAMEv
-                0x00000312       0x6a Source/lcd.o
-                0x00000312                _ZN3lcd5CGRAMEv
+                0x0000031a       0x6a Source/lcd.o
+                0x0000031a                _ZN3lcd5CGRAMEv
  .text._ZN3lcd8init_LCDEv
-                0x0000037c       0xa2 Source/lcd.o
-                0x0000037c                _ZN3lcd8init_LCDEv
+                0x00000384       0xa2 Source/lcd.o
+                0x00000384                _ZN3lcd8init_LCDEv
  .text._ZN3lcdC2Ev
-                0x0000041e       0x1e Source/lcd.o
-                0x0000041e                _ZN3lcdC1Ev
-                0x0000041e                _ZN3lcdC2Ev
+                0x00000426       0x1e Source/lcd.o
+                0x00000426                _ZN3lcdC1Ev
+                0x00000426                _ZN3lcdC2Ev
  .text._ZN3lcd5printEPhh
-                0x0000043c       0x48 Source/lcd.o
-                0x0000043c                _ZN3lcd5printEPhh
+                0x00000444       0x48 Source/lcd.o
+                0x00000444                _ZN3lcd5printEPhh
  .text._ZN3lcd15test_LCD_ScreenEv
-                0x00000484       0xb4 Source/lcd.o
-                0x00000484                _ZN3lcd15test_LCD_ScreenEv
+                0x0000048c       0xb4 Source/lcd.o
+                0x0000048c                _ZN3lcd15test_LCD_ScreenEv
  .text._ZN3rtc10read_blockEhPhj
-                0x00000538       0x40 Source/rtc.o
-                0x00000538                _ZN3rtc10read_blockEhPhj
+                0x00000540       0x40 Source/rtc.o
+                0x00000540                _ZN3rtc10read_blockEhPhj
  .text._ZN3rtc11write_blockEhPhj
-                0x00000578       0x40 Source/rtc.o
-                0x00000578                _ZN3rtc11write_blockEhPhj
+                0x00000580       0x40 Source/rtc.o
+                0x00000580                _ZN3rtc11write_blockEhPhj
  .text._ZN3rtcC2Ev
-                0x000005b8       0x46 Source/rtc.o
-                0x000005b8                _ZN3rtcC2Ev
-                0x000005b8                _ZN3rtcC1Ev
+                0x000005c0       0x46 Source/rtc.o
+                0x000005c0                _ZN3rtcC2Ev
+                0x000005c0                _ZN3rtcC1Ev
  .text._ZN3rtc8get_timeEv
-                0x000005fe       0x56 Source/rtc.o
-                0x000005fe                _ZN3rtc8get_timeEv
+                0x00000606       0x56 Source/rtc.o
+                0x00000606                _ZN3rtc8get_timeEv
  .text._ZN3rtc8set_timeEP8rtc_time
-                0x00000654        0xc Source/rtc.o
-                0x00000654                _ZN3rtc8set_timeEP8rtc_time
+                0x0000065c        0xc Source/rtc.o
+                0x0000065c                _ZN3rtc8set_timeEP8rtc_time
  .text._ZN3rtc11rtm_to_charE8rtc_timePhj
-                0x00000660      0x12e Source/rtc.o
-                0x00000660                _ZN3rtc11rtm_to_charE8rtc_timePhj
+                0x00000668      0x12e Source/rtc.o
+                0x00000668                _ZN3rtc11rtm_to_charE8rtc_timePhj
  .text._Z10spi_selectv
-                0x0000078e        0xa Source/spi.o
-                0x0000078e                _Z10spi_selectv
+                0x00000796        0xa Source/spi.o
+                0x00000796                _Z10spi_selectv
  .text._Z12spi_deselectv
-                0x00000798        0x4 Source/spi.o
-                0x00000798                _Z12spi_deselectv
+                0x000007a0        0x4 Source/spi.o
+                0x000007a0                _Z12spi_deselectv
  .text._Z8spi_initv
-                0x0000079c       0x10 Source/spi.o
-                0x0000079c                _Z8spi_initv
+                0x000007a4       0x10 Source/spi.o
+                0x000007a4                _Z8spi_initv
  .text._Z19spi_master_transmith
-                0x000007ac        0xc Source/spi.o
-                0x000007ac                _Z19spi_master_transmith
+                0x000007b4        0xc Source/spi.o
+                0x000007b4                _Z19spi_master_transmith
  .text._Z8TWI_INITv
-                0x000007b8       0x26 Source/twi.o
-                0x000007b8                _Z8TWI_INITv
+                0x000007c0       0x26 Source/twi.o
+                0x000007c0                _Z8TWI_INITv
  .text._Z8TWI_STOPv
-                0x000007de        0x8 Source/twi.o
-                0x000007de                _Z8TWI_STOPv
+                0x000007e6        0x8 Source/twi.o
+                0x000007e6                _Z8TWI_STOPv
  .text._Z22TWI_StartCommunicationv
-                0x000007e6       0x16 Source/twi.o
-                0x000007e6                _Z22TWI_StartCommunicationv
+                0x000007ee       0x16 Source/twi.o
+                0x000007ee                _Z22TWI_StartCommunicationv
  .text._Z16TWI_TransmitDatahh
-                0x000007fc       0x1a Source/twi.o
-                0x000007fc                _Z16TWI_TransmitDatahh
+                0x00000804       0x1a Source/twi.o
+                0x00000804                _Z16TWI_TransmitDatahh
+ .text._Z12vs1011_nullsj
+                0x0000081e       0x18 Source/vs1011eCommunication.o
+                0x0000081e                _Z12vs1011_nullsj
+ .text._Z8WriteSciht
+                0x00000836       0x28 Source/vs1011eCommunication.o
+                0x00000836                _Z8WriteSciht
+ .text._Z20vs1011_sinewave_beeph
+                0x0000085e       0x7a Source/vs1011eCommunication.o
+                0x0000085e                _Z20vs1011_sinewave_beeph
+ .text._Z10InitVS1011v
+                0x000008d8       0x12 Source/vs1011eCommunication.o
+                0x000008d8                _Z10InitVS1011v
+ .text._Z22VS1011setDataDirectionv
+                0x000008ea        0x8 Source/vs1011eCommunication.o
+                0x000008ea                _Z22VS1011setDataDirectionv
  .text.avr-libc
-                0x00000816      0x710 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libprintf_flt.a(vfprintf_flt.o)
-                0x00000816                vfprintf
+                0x000008f2      0x710 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libprintf_flt.a(vfprintf_flt.o)
+                0x000008f2                vfprintf
  .text.avr-libc
-                0x00000f26      0x1b0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(ftoa_engine.o)
-                0x00000f26                __ftoa_engine
+                0x00001002      0x1b0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(ftoa_engine.o)
+                0x00001002                __ftoa_engine
  .text.avr-libc
-                0x000010d6       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(strnlen_P.o)
-                0x000010d6                strnlen_P
+                0x000011b2       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(strnlen_P.o)
+                0x000011b2                strnlen_P
  .text.avr-libc
-                0x000010ec       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(memcpy.o)
-                0x000010ec                memcpy
+                0x000011c8       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(memcpy.o)
+                0x000011c8                memcpy
  .text.avr-libc
-                0x000010fe       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(strnlen.o)
-                0x000010fe                strnlen
+                0x000011da       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(strnlen.o)
+                0x000011da                strnlen
  .text.avr-libc
-                0x00001114       0x70 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(fputc.o)
-                0x00001114                fputc
+                0x000011f0       0x70 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(fputc.o)
+                0x000011f0                fputc
  .text.avr-libc
-                0x00001184       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(ultoa_invert.o)
-                0x00001184                __ultoa_invert
-                0x00001240                . = ALIGN (0x2)
+                0x00001260       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(ultoa_invert.o)
+                0x00001260                __ultoa_invert
+                0x0000131c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001240        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr51\libgcc.a(_exit.o)
-                0x00001240                _exit
-                0x00001240                exit
+ .fini9         0x0000131c        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr51\libgcc.a(_exit.o)
+                0x0000131c                _exit
+                0x0000131c                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -579,11 +606,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001240        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr51\libgcc.a(_exit.o)
+ .fini0         0x0000131c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr51\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001244                _etext = .
+                0x00001320                _etext = .
 
-.data           0x00800100       0x22 load address 0x00001244
+.data           0x00800100       0x22 load address 0x00001320
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -602,8 +629,8 @@ END GROUP
  *(.bss*)
  *(COMMON)
                 0x00800122                PROVIDE (__bss_end, .)
-                0x00001244                __data_load_start = LOADADDR (.data)
-                0x00001266                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00001320                __data_load_start = LOADADDR (.data)
+                0x00001342                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800122        0x0
                 0x00800122                PROVIDE (__noinit_start, .)
@@ -657,6 +684,7 @@ END GROUP
  .comment       0x00000030       0x31 Source/rtc.o
  .comment       0x00000030       0x31 Source/spi.o
  .comment       0x00000030       0x31 Source/twi.o
+ .comment       0x00000030       0x31 Source/vs1011eCommunication.o
  .comment       0x00000030       0x2c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libprintf_flt.a(vfprintf_flt.o)
                                  0x2d (size before relaxing)
  .comment       0x0000005c       0x31 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr51\libc.a(fputc.o)
@@ -681,7 +709,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x150
+.debug_aranges  0x00000000      0x1b0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x28 Source/headsup.o
@@ -690,65 +718,74 @@ END GROUP
  .debug_aranges
                 0x00000080       0x48 Source/rtc.o
  .debug_aranges
-                0x000000c8       0x38 Source/spi.o
+                0x000000c8       0x40 Source/spi.o
  .debug_aranges
-                0x00000100       0x50 Source/twi.o
+                0x00000108       0x50 Source/twi.o
+ .debug_aranges
+                0x00000158       0x58 Source/vs1011eCommunication.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1b58
+.debug_info     0x00000000     0x2156
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x615 Source/headsup.o
- .debug_info    0x00000615      0xc1a Source/lcd.o
- .debug_info    0x0000122f      0x681 Source/rtc.o
- .debug_info    0x000018b0      0x104 Source/spi.o
- .debug_info    0x000019b4      0x1a4 Source/twi.o
+ .debug_info    0x00000000      0x66c Source/headsup.o
+ .debug_info    0x0000066c      0xc1a Source/lcd.o
+ .debug_info    0x00001286      0x681 Source/rtc.o
+ .debug_info    0x00001907      0x125 Source/spi.o
+ .debug_info    0x00001a2c      0x1a4 Source/twi.o
+ .debug_info    0x00001bd0      0x586 Source/vs1011eCommunication.o
 
-.debug_abbrev   0x00000000      0x93d
+.debug_abbrev   0x00000000      0xb60
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x260 Source/headsup.o
- .debug_abbrev  0x00000260      0x266 Source/lcd.o
- .debug_abbrev  0x000004c6      0x29a Source/rtc.o
- .debug_abbrev  0x00000760       0xab Source/spi.o
- .debug_abbrev  0x0000080b      0x132 Source/twi.o
+ .debug_abbrev  0x00000000      0x286 Source/headsup.o
+ .debug_abbrev  0x00000286      0x266 Source/lcd.o
+ .debug_abbrev  0x000004ec      0x29a Source/rtc.o
+ .debug_abbrev  0x00000786       0xc8 Source/spi.o
+ .debug_abbrev  0x0000084e      0x132 Source/twi.o
+ .debug_abbrev  0x00000980      0x1e0 Source/vs1011eCommunication.o
 
-.debug_line     0x00000000      0xa08
+.debug_line     0x00000000      0xd8d
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x1df Source/headsup.o
- .debug_line    0x000001df      0x3cc Source/lcd.o
- .debug_line    0x000005ab      0x231 Source/rtc.o
- .debug_line    0x000007dc       0xb9 Source/spi.o
- .debug_line    0x00000895      0x173 Source/twi.o
+ .debug_line    0x00000000      0x20b Source/headsup.o
+ .debug_line    0x0000020b      0x3cc Source/lcd.o
+ .debug_line    0x000005d7      0x231 Source/rtc.o
+ .debug_line    0x00000808       0xdf Source/spi.o
+ .debug_line    0x000008e7      0x173 Source/twi.o
+ .debug_line    0x00000a5a      0x333 Source/vs1011eCommunication.o
 
-.debug_frame    0x00000000      0x330
+.debug_frame    0x00000000      0x41c
  *(.debug_frame)
  .debug_frame   0x00000000       0x44 Source/headsup.o
  .debug_frame   0x00000044       0xf0 Source/lcd.o
  .debug_frame   0x00000134      0x124 Source/rtc.o
- .debug_frame   0x00000258       0x54 Source/spi.o
- .debug_frame   0x000002ac       0x84 Source/twi.o
+ .debug_frame   0x00000258       0x64 Source/spi.o
+ .debug_frame   0x000002bc       0x84 Source/twi.o
+ .debug_frame   0x00000340       0xdc Source/vs1011eCommunication.o
 
-.debug_str      0x00000000      0x70a
+.debug_str      0x00000000      0x87f
  *(.debug_str)
- .debug_str     0x00000000      0x42a Source/headsup.o
-                                0x467 (size before relaxing)
- .debug_str     0x0000042a       0xc3 Source/lcd.o
+ .debug_str     0x00000000      0x4a7 Source/headsup.o
+                                0x4e4 (size before relaxing)
+ .debug_str     0x000004a7       0xc3 Source/lcd.o
                                 0x388 (size before relaxing)
- .debug_str     0x000004ed      0x12a Source/rtc.o
+ .debug_str     0x0000056a      0x12a Source/rtc.o
                                 0x403 (size before relaxing)
- .debug_str     0x00000617       0x1e Source/spi.o
-                                0x234 (size before relaxing)
- .debug_str     0x00000635       0xd5 Source/twi.o
+ .debug_str     0x00000694       0x43 Source/spi.o
+                                0x259 (size before relaxing)
+ .debug_str     0x000006d7       0xd5 Source/twi.o
                                 0x2f8 (size before relaxing)
+ .debug_str     0x000007ac       0xd3 Source/vs1011eCommunication.o
+                                0x3b3 (size before relaxing)
 
-.debug_loc      0x00000000      0xc75
+.debug_loc      0x00000000     0x10ff
  *(.debug_loc)
  .debug_loc     0x00000000       0x47 Source/headsup.o
  .debug_loc     0x00000047      0x422 Source/lcd.o
  .debug_loc     0x00000469      0x79f Source/rtc.o
  .debug_loc     0x00000c08       0x1f Source/spi.o
  .debug_loc     0x00000c27       0x4e Source/twi.o
+ .debug_loc     0x00000c75      0x48a Source/vs1011eCommunication.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -768,13 +805,14 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x100
+.debug_ranges   0x00000000      0x150
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x18 Source/headsup.o
  .debug_ranges  0x00000018       0x48 Source/lcd.o
  .debug_ranges  0x00000060       0x38 Source/rtc.o
- .debug_ranges  0x00000098       0x28 Source/spi.o
- .debug_ranges  0x000000c0       0x40 Source/twi.o
+ .debug_ranges  0x00000098       0x30 Source/spi.o
+ .debug_ranges  0x000000c8       0x40 Source/twi.o
+ .debug_ranges  0x00000108       0x48 Source/vs1011eCommunication.o
 
 .debug_macro
  *(.debug_macro)

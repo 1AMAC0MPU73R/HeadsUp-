@@ -46,7 +46,8 @@ C_SRCS +=  \
 ../Source/sdcard.cpp \
 ../Source/spi.cpp \
 ../Source/time.cpp \
-../Source/twi.cpp
+../Source/twi.cpp \
+../Source/vs1011eCommunication.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -63,7 +64,8 @@ Source/rtc.o \
 Source/sdcard.o \
 Source/spi.o \
 Source/time.o \
-Source/twi.o
+Source/twi.o \
+Source/vs1011eCommunication.o
 
 OBJS_AS_ARGS +=  \
 Source/fat16.o \
@@ -73,7 +75,8 @@ Source/rtc.o \
 Source/sdcard.o \
 Source/spi.o \
 Source/time.o \
-Source/twi.o
+Source/twi.o \
+Source/vs1011eCommunication.o
 
 C_DEPS +=  \
 Source/fat16.d \
@@ -83,7 +86,8 @@ Source/rtc.d \
 Source/sdcard.d \
 Source/spi.d \
 Source/time.d \
-Source/twi.d
+Source/twi.d \
+Source/vs1011eCommunication.d
 
 C_DEPS_AS_ARGS +=  \
 Source/fat16.d \
@@ -93,7 +97,8 @@ Source/rtc.d \
 Source/sdcard.d \
 Source/spi.d \
 Source/time.d \
-Source/twi.d
+Source/twi.d \
+Source/vs1011eCommunication.d
 
 OUTPUT_FILE_PATH +=HeadsUp.elf
 
@@ -109,6 +114,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

@@ -17,6 +17,10 @@ int main(){
 	rtc rtcDS;
 	unsigned char uchCurrenttime[ LINE_SIZE ] ;
 
+	VS1011setDataDirection();
+	InitVS1011();
+	vs1011_sinewave_beep(100);
+
 	rtmCurrent.ucSeconds = 0x50;
 	rtmCurrent.ucMinutes = 0x59;
 	rtmCurrent.ucHours = 0x72;

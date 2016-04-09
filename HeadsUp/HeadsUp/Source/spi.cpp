@@ -51,3 +51,13 @@
 
 	 return SPDR;
  }
+
+ unsigned char spi_master_read( void )
+ {
+	 /* wait until Char is received */
+	 while ( ! (SPSR & ( 1 << SPIF ))){
+		 ;
+	 }
+
+	 return SPDR;
+ }

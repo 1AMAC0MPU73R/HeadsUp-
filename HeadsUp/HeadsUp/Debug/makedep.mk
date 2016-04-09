@@ -18,3 +18,5 @@ Source\time.cpp
 
 Source\twi.cpp
 
+Source\vs1011eCommunication.cpp
+

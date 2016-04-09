@@ -27,6 +27,7 @@ void spi_deselect( );
 void spi_select( );
 void spi_init( );
 unsigned char spi_master_transmit( unsigned char cData );
+unsigned char spi_master_read(void);
 
 
 #endif /* SPI_H_ */

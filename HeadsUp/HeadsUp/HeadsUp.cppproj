@@ -206,6 +206,9 @@
     <Compile Include="Header\twi.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\vs1011eCommunication.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Source\fat16.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -228,6 +231,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\twi.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\vs1011eCommunication.cpp">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
