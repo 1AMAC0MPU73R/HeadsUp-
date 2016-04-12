@@ -5,27 +5,27 @@
 #define _TIME_H_
 
 
-#define PER_AM 0			/* TIME DEFINITIONS */
-#define PER_PM 1
-#define DAY_SUN 0
-#define DAY_MON 1
-#define DAY_TUE 2
-#define DAY_WED 3
-#define DAY_THU 4
-#define DAY_FRI 5
-#define DAY_SAT 6
-#define MON_JAN 0
-#define MON_FEB 1
-#define MON_MAR 2
-#define MON_APR 3
-#define MON_MAY 4
-#define MON_JUN 5
-#define MON_JUL 6
-#define MON_AUG 7
-#define MON_SEP 8
-#define MON_OCT 9
-#define MON_NOV 10
-#define MON_DEC 11
+#define RTC_12AM 0x40			/* TIME DEFINITIONS */
+#define RTC_12PM 0x60
+#define RTC_SUN 0x01
+#define RTC_MON 0x02
+#define RTC_TUE 0x03
+#define RTC_WED 0x04
+#define RTC_THU 0x05
+#define RTC_FRI 0x06
+#define RTC_SAT 0x07
+#define RTC_JAN 0x01
+#define RTC_FEB 0x02
+#define RTC_MAR 0x03
+#define RTC_APR 0x04
+#define RTC_MAY 0x05
+#define RTC_JUN 0x06
+#define RTC_JUL 0x07
+#define RTC_AUG 0x08
+#define RTC_SEP 0x09
+#define RTC_OCT 0x10
+#define RTC_NOV 0x11
+#define RTC_DEC 0x12
 
 
 typedef uint16_t year;		/* TIME TYPES */

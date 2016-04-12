@@ -5,34 +5,22 @@
 ---------------------------------------------------*/
 
  
-#include <avr/io.h>
-#include <util/delay.h>
 #include "headsup.h"
+
 
 
 int main(){
 	
-	rtc_time rtmCurrent;
-	lcd lcdNHD;
-	rtc rtcDS;
-	unsigned char uchCurrenttime[ LINE_SIZE ] ;
+	rtc_alarm rtaAlarm0 { 0x00, 0x00, 0x80, 0x80 };
+	rtc_alarm rtaAlarm1 { 0x80, 0x80, 0x80, 0x80 };
 
-
-	rtmCurrent.ucSeconds = 0x50;
-	rtmCurrent.ucMinutes = 0x59;
-	rtmCurrent.ucHours = 0x72;
 	
-	Test_On_PortA0();
-	lcdNHD.test_LCD_Screen();
-
-	rtcDS.set(&rtmCurrent);
-
-	for(;;){
-		rtmCurrent=rtcDS.get();
-		rtcDS.rtm_to_char( rtmCurrent, uchCurrenttime, LINE_SIZE );
-		lcdNHD.print( uchCurrenttime , LINE_TOP );
-		_delay_ms( 1000 );
-	}
+	HeadsUp_Init();
+	
+	rtcDS.alarm( RTC_ALARM_SET, RTC_ALARM_0, rtaAlarm0 );
+	rtcDS.alarm( RTC_ALARM_SET, RTC_ALARM_1, rtaAlarm1 );
+		
+	Menu_Main();
 	
 	return 0;
 

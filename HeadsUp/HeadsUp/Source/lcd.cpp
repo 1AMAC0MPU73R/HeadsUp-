@@ -83,7 +83,7 @@ void lcd::Show(unsigned char* text){
 }
 
 
-void lcd::SelectLine1(void){
+void lcd::SelectLine1(){
 	
 	TWI_StartCommunication();
 	
@@ -95,7 +95,7 @@ void lcd::SelectLine1(void){
 }
 
 
-void lcd::SelectLine2(void){
+void lcd::SelectLine2(){
 	
 	TWI_StartCommunication();
 	
@@ -147,6 +147,7 @@ void lcd::init_LCD()
 	TWI_TransmitData(0x0C,TW_MT_DATA_ACK);						// Display On/Off
 	TWI_TransmitData(0x01,TW_MT_DATA_ACK);						// Clear Display
 	TWI_TransmitData(0x06,TW_MT_DATA_ACK);						// Entry Mode Set: Cursor/Shift as characters input
+	TWI_TransmitData(0x0E,TW_MT_DATA_ACK);						// Entry Mode Set: Cursor/Shift as characters input
 	_delay_ms(100);
 	TWI_STOP();
 
