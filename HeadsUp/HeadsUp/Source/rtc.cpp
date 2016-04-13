@@ -158,14 +158,14 @@ void rtc::rtm_to_char( rtc_time rtmToConvert, unsigned char* uchToReturn, unsign
 	unsigned char uchTimeOut[ valCharLen ];
 	uint8_t valTimeLength = RTC_DISP_LEN;
 	unsigned int valTextOffset = ( valCharLen - valTimeLength ) / 2;
-	uint16_t valMins;
-	uint16_t valHours;
-	uint8_t valAMPM;
+	minute valMins;
+	hour valHours;
+	period valAMPM;
 	uint16_t valDays;
-	uint8_t valDay;
+	day valDay;
 	uint32_t valMonths;
-	uint8_t valMonth;
-	uint16_t valDates;
+	month valMonth;
+	date valDates;
 
 	
 	for(unsigned int valN = 0; valN < valCharLen; valN++ ){

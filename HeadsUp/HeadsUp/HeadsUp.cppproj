@@ -181,6 +181,9 @@
     <Compile Include="Header\alarm.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\bat.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Header\headsup.h">
       <SubType>compile</SubType>
     </Compile>
@@ -190,7 +193,7 @@
     <Compile Include="Header\rtc.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Header\time.h">
+    <Compile Include="Source\bat.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\headsup.cpp">
@@ -200,9 +203,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\rtc.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Source\time.cpp">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

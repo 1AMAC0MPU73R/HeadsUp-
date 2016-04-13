@@ -39,10 +39,10 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../Source/bat.cpp \
 ../Source/headsup.cpp \
 ../Source/lcd.cpp \
-../Source/rtc.cpp \
-../Source/time.cpp
+../Source/rtc.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -52,28 +52,28 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+Source/bat.o \
 Source/headsup.o \
 Source/lcd.o \
-Source/rtc.o \
-Source/time.o
+Source/rtc.o
 
 OBJS_AS_ARGS +=  \
+Source/bat.o \
 Source/headsup.o \
 Source/lcd.o \
-Source/rtc.o \
-Source/time.o
+Source/rtc.o
 
 C_DEPS +=  \
+Source/bat.d \
 Source/headsup.d \
 Source/lcd.d \
-Source/rtc.d \
-Source/time.d
+Source/rtc.d
 
 C_DEPS_AS_ARGS +=  \
+Source/bat.d \
 Source/headsup.d \
 Source/lcd.d \
-Source/rtc.d \
-Source/time.d
+Source/rtc.d
 
 OUTPUT_FILE_PATH +=HeadsUp.elf
 
