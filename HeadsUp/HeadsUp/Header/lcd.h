@@ -6,55 +6,65 @@
 #include <util/delay.h>
 
 
-#define TW_START			0x08	/* Master */
-#define TW_REP_START		0x10
-#define TW_MT_SLA_ACK		0x18	/* Master Transmitter */
-#define TW_MT_SLA_NACK		0x20
-#define TW_MT_DATA_ACK		0x28
-#define TW_MT_DATA_NACK		0x30
-#define TW_MT_ARB_LOST		0x38
-#define TW_MR_ARB_LOST		0x38	/* Master Receiver */
-#define TW_MR_SLA_ACK		0x40
-#define TW_MR_SLA_NACK		0x48
-#define TW_MR_DATA_ACK		0x50
-#define TW_MR_DATA_NAC		0x58
-#define	SLA					0x7C	// LCD will always be in WRITE mode, there is no READ mode. USE 0x7C
+/* ------------------- LCD I2C/INTERFACE DEFINITIONS ------------------ */
 
-#define SEND_COMMAND 0x00
-#define SEND_DATA 0x40
+#define LCD_TW_START			0x08	// Master Signals
+#define LCD_TW_REP_START		0x10
+#define LCD_TW_MT_SLA_ACK		0x18	//  Master Transmitter Signals
+#define LCD_TW_MT_SLA_NACK		0x20
+#define LCD_TW_MT_DATA_ACK		0x28
+#define LCD_TW_MT_DATA_NACK		0x30
+#define LCD_TW_MT_ARB_LOST		0x38
+#define LCD_TW_MR_ARB_LOST		0x38	// Master Receiver Signals
+#define LCD_TW_MR_SLA_ACK		0x40
+#define LCD_TW_MR_SLA_NACK		0x48
+#define LCD_TW_MR_DATA_ACK		0x50
+#define LCD_TW_MR_DATA_NAC		0x58
+#define	LCD_SLA					0x7C	// LCD slave address for I2C writing, no reading functionality
+#define LCD_SEND_COMMAND		0x00	// Transmission content flags
+#define LCD_SEND_DATA			0x40
 
-#define LINE_SIZE 16
-#define LINE_1 0x80
-#define LINE_2 0xC0
-#define LINE_TOP 0
-#define LINE_BOTTOM 1
+/* ---------------------------------------------------------------- */
 
+/* -------------------- LCD DISPLAY DEFINITIONS ------------------- */
+
+#define LCD_LINE_SIZE			16		// Screen will be configured to always display 2x16 bit lines
+#define LCD_LINE_1				0x80	// Line input addresses
+#define LCD_LINE_2				0xC0
+#define LCD_LINE_TOP			0		// Line selection flags
+#define LCD_LINE_BOTTOM			1
+
+/* ---------------------------------------------------------------- */
+
+
+/* --------------------- LCD CLASS DEFINITION --------------------- */
 
 class lcd{
 
 	public:
 		lcd();
-		
-		void test_LCD_Screen();
-		
+				
 		void print(unsigned char* text, uint8_t valLine);
 
 	private:
-		void init_LCD();
+		void INIT();
 		void TWI_INIT();
-		void TWI_CheckStatusRegister(uint8_t Status);
-		void TWI_ClearFlagAndEnable();
-		void TWI_ClearFlagAndEnableWithAck();
+		void TWI_CHECK_STATUS(uint8_t Status);
+		void TWI_CLEAR_ENABLE();
+		void TWI_CLEAR_ENABLE_ACK();
 		void TWI_STOP();
-		void TWI_StartCommunication();
-		void TWI_TransmitData(uint8_t TwiData, uint8_t StatusCode);
-		void Show(unsigned char *text);
-		void SelectLine1();
-		void SelectLine2();
+		void TWI_START();
+		void TWI_TRANSMIT(uint8_t TwiData, uint8_t StatusCode);
+		void SHOW(unsigned char *text);
+		void SELECT_LCD_LINE_1();
+		void SELECT_LCD_LINE_2();
+		void SHOW_WELCOME();
 
 		void CGRAM();
 
 };
+
+/* ---------------------------------------------------------------- */
 
 
 #endif

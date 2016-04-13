@@ -5,36 +5,6 @@
 #define _TIME_H_
 
 
-#define PER_AM 0			/* TIME DEFINITIONS */
-#define PER_PM 1
-#define DAY_SUN 0
-#define DAY_MON 1
-#define DAY_TUE 2
-#define DAY_WED 3
-#define DAY_THU 4
-#define DAY_FRI 5
-#define DAY_SAT 6
-#define MON_JAN 0
-#define MON_FEB 1
-#define MON_MAR 2
-#define MON_APR 3
-#define MON_MAY 4
-#define MON_JUN 5
-#define MON_JUL 6
-#define MON_AUG 7
-#define MON_SEP 8
-#define MON_OCT 9
-#define MON_NOV 10
-#define MON_DEC 11
-
-
-typedef uint16_t year;		/* TIME TYPES */
-typedef uint8_t month;
-typedef uint16_t day;
-typedef uint16_t hour;
-typedef uint16_t minute;
-typedef uint16_t second;
-typedef bool period;
 
 
 class time {
