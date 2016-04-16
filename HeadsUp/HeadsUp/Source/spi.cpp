@@ -29,8 +29,8 @@
 
 	 /* Outputs: MOSI and SCK out, all others inputs */
 	 DDRB = ( 1 << DD_MOSI_PIN ) | ( 1 << DD_SCK_PIN ) | ( 1 << DD_SS_PIN );
-	 /* Enable SPI, Master, CPOL=0, CPHA=1, set clock rate fck/16 */
-	 SPCR = ( 1 << SPE ) | ( 1 << MSTR ) | ( 1 << SPR0 );	// POSSIBLE ERROR: PULLING DATA HIGH
+	 /* Enable SPI, Master, CPOL=0, CPHA=0 set clock rate fck/64 */
+	 SPCR = ( 1 << SPE ) | ( 1 << MSTR ) | ( 1 << SPR1 );	// POSSIBLE ERROR: PULLING DATA HIGH
 	 
 	 /* Clear the SPIF bit in SPSR */
 	 IOReg = SPSR;

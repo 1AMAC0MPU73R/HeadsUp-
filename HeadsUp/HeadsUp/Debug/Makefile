@@ -39,15 +39,20 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../Source/fat.cpp \
 ../Source/fat16.cpp \
 ../Source/headsup.cpp \
+../Source/id3.cpp \
 ../Source/lcd.cpp \
+../Source/multimediacard.cpp \
+../Source/playaudio.cpp \
+../Source/playlist.cpp \
 ../Source/rtc.cpp \
 ../Source/sdcard.cpp \
 ../Source/spi.cpp \
 ../Source/time.cpp \
 ../Source/twi.cpp \
-../Source/vs1011eCommunication.cpp
+../Source/vs1011eController.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -57,48 +62,68 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+Source/fat.o \
 Source/fat16.o \
 Source/headsup.o \
+Source/id3.o \
 Source/lcd.o \
+Source/multimediacard.o \
+Source/playaudio.o \
+Source/playlist.o \
 Source/rtc.o \
 Source/sdcard.o \
 Source/spi.o \
 Source/time.o \
 Source/twi.o \
-Source/vs1011eCommunication.o
+Source/vs1011eController.o
 
 OBJS_AS_ARGS +=  \
+Source/fat.o \
 Source/fat16.o \
 Source/headsup.o \
+Source/id3.o \
 Source/lcd.o \
+Source/multimediacard.o \
+Source/playaudio.o \
+Source/playlist.o \
 Source/rtc.o \
 Source/sdcard.o \
 Source/spi.o \
 Source/time.o \
 Source/twi.o \
-Source/vs1011eCommunication.o
+Source/vs1011eController.o
 
 C_DEPS +=  \
+Source/fat.d \
 Source/fat16.d \
 Source/headsup.d \
+Source/id3.d \
 Source/lcd.d \
+Source/multimediacard.d \
+Source/playaudio.d \
+Source/playlist.d \
 Source/rtc.d \
 Source/sdcard.d \
 Source/spi.d \
 Source/time.d \
 Source/twi.d \
-Source/vs1011eCommunication.d
+Source/vs1011eController.d
 
 C_DEPS_AS_ARGS +=  \
+Source/fat.d \
 Source/fat16.d \
 Source/headsup.d \
+Source/id3.d \
 Source/lcd.d \
+Source/multimediacard.d \
+Source/playaudio.d \
+Source/playlist.d \
 Source/rtc.d \
 Source/sdcard.d \
 Source/spi.d \
 Source/time.d \
 Source/twi.d \
-Source/vs1011eCommunication.d
+Source/vs1011eController.d
 
 OUTPUT_FILE_PATH +=HeadsUp.elf
 
@@ -133,10 +158,20 @@ LINKER_SCRIPT_DEP+=
 
 
 
+
+
+
+
+
+
+
+
+
+
 Source/%.o: ../Source/%.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 4.9.2
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.90\include" -I"../Source" -I"../Header"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega1284p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.90\gcc\dev\atmega1284p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.90\include" -I"../Source" -I"../Header"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g3 -Wall -mmcu=atmega1284p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.90\gcc\dev\atmega1284p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
