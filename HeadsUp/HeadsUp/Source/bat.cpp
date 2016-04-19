@@ -13,9 +13,9 @@ bat::bat(){
 void bat::ENABLE(){
 	
 	ADCSRA |= ( 1 << ADEN );
-	//_delay_ms( 25 );
+	//_delay_ms( 200 );
 	ADCSRA |= ( 1 << ADSC );
-	
+
 }
 
 
@@ -29,14 +29,15 @@ unsigned char bat::get(){
 	
 	adc_out adoCurrent;
 	uint8_t valBatteryLevel;
-	
+	uint16_t minADCpercent = 0x02DA;
+	uint16_t adcdifference = 0x0125;
 	
 	ENABLE();
 	loop_until_bit_is_clear(ADCSRA, ADSC);
-	adoCurrent = ADC;
+	adoCurrent = ADC - minADCpercent;
 	DISABLE();
 	
-	valBatteryLevel = (( uint32_t )adoCurrent * 100 ) / 1023;
-	return (( valBatteryLevel / 10 ) << 4 ) | ( valBatteryLevel - ( valBatteryLevel / 10 ));
+	valBatteryLevel = (( uint32_t )adoCurrent * 100 ) / adcdifference;
+	return (( valBatteryLevel / 10 ) << 4 ) | ( valBatteryLevel % 10 );
 	
 }

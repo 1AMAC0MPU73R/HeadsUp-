@@ -114,6 +114,8 @@ void Menu_Main(){
 	uint8_t valMenuState{ MAIN_STATE_ALARMS };
 	uint8_t valCursorState{ CURSOR_OFF };
 	uint8_t valCursorDivider{ 0 };
+	uint16_t valBatUpdate{ 0 };
+	
 	
 	lcdNHD.print( chrMenuBot , LCD_LINE_BOTTOM );
 	
@@ -160,6 +162,14 @@ void Menu_Main(){
 				chrMenuBot[15] = '#';
 			}
 		}
+		
+		if( valBatUpdate == 0 ){
+			chrMenuBot[8] = ( batLiPo.get() >> 4 ) + 0x30;
+			chrMenuBot[9] = ( batLiPo.get() & 0x0F ) + 0x30;
+		}
+		valBatUpdate = ( valBatUpdate + 1 ) % 100;
+
+		
 		lcdNHD.print( chrMenuBot, LCD_LINE_BOTTOM );
 		_delay_ms(50);
 	}
