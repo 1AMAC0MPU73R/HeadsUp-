@@ -12,7 +12,7 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
-
+#include <assert.h>
 
 #define LED_OC1B_OUTPUT			PORTD4
 #define LED_OC1A_OUTPUT			PORTD5
@@ -27,7 +27,7 @@ class led{
 	public:
 		led();
 
-		void set();
+		void set(double ledLevel);
 
 	private:
 		void INIT();

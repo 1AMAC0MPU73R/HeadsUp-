@@ -20,23 +20,23 @@ void led::DISABLE(){
 
 }
 
-void led::set() {
+void led::set(double ledLevel) {
 
-	static double dutyCycle = 0;
-	double led_increment = 0.1;
-	double led_maxVal = 1000;
-	
+	assert( 0 < ledLevel );
+	if( 100 < ledLevel ){
+		ledLevel = 100;
+	}
+
+	static double dutyCycle = ledLevel;
+
+	ENABLE();
 	TCCR1B = ( 1 << CS10 );	// Starts timer
 	TCCR2B = ( 1 << CS20 );
 
-	for(int valN = 0; valN < led_maxVal; valN ++){
-		_delay_ms(1);
-		dutyCycle += led_increment;
-		OCR1A = ( dutyCycle/100 ) * 255;
-		OCR1B = ( dutyCycle/100 ) * 255;
-		OCR2A = ( dutyCycle/100 ) * 255;
-		OCR2B = ( dutyCycle/100 ) * 255;
-		_delay_ms(1);
-	}
+	OCR1A = ( dutyCycle/100 ) * 255;
+	OCR1B = ( dutyCycle/100 ) * 255;
+	OCR2A = ( dutyCycle/100 ) * 255;
+	OCR2B = ( dutyCycle/100 ) * 255;
 
+	DISABLE();
 }
