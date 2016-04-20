@@ -11,11 +11,12 @@
 rtc rtcDS;
 lcd lcdNHD;
 bat batLiPo;
+led ledAlarm;
 rtc_time rtmCurrent{0x50, 0x59, 0x72, 0x02, 0x11, 0x04, 0x16};
 
 
 int main(){
-	
+
 	rtc_alarm rtaAlarm0 { 0x00, 0x00, 0x80, 0x80 };
 	rtc_alarm rtaAlarm1 { 0x80, 0x80, 0x80, 0x80 };
 
@@ -24,7 +25,7 @@ int main(){
 	
 	rtcDS.alarm( RTC_ALARM_SET, RTC_ALARM_0, rtaAlarm0 );
 	rtcDS.alarm( RTC_ALARM_SET, RTC_ALARM_1, rtaAlarm1 );
-		
+
 	Menu_Main();
 	
 	return 0;
@@ -89,7 +90,10 @@ void Test_On_PortA0(){
 ISR( PCINT0_vect ){
 	
 	unsigned char chrPinA;
-	
+	uint8_t valCounter{ 100 };
+	uint8_t valIDelta{ valCounter / 100 };
+	uint8_t valI{ 0 };
+
 	
 	memcpy(( void* )&chrPinA, ( void* )0x20, 1 );
 	
@@ -98,8 +102,14 @@ ISR( PCINT0_vect ){
 		PORTA |= ( 1 << PINA4);
 		_delay_ms(250);
 		PORTA &= ~( 1 << PINA4);
+		do{
+			ledAlarm.set( valI );
+			valI = valI + valIDelta;
+			_delay_ms( 100 );
+		}while( --valCounter );
+		ledAlarm.set( 0 );
 		rtcDS.clear_interupt( RTC_ALARM_0 );
-		}else if((( chrPinA >> PORTA2 ) & 0x01 ) == 0x00 ){
+	}else if((( chrPinA >> PORTA2 ) & 0x01 ) == 0x00 ){
 		rtmCurrent = rtcDS.get();
 		rtcDS.clear_interupt( RTC_ALARM_1 );
 	}

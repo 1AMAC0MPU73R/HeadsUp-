@@ -12,7 +12,7 @@
 #include "rtc.h"
 #include "lcd.h"
 #include "bat.h"
-
+#include "led.h"
 
 #define F_CPU 8000000L		// 8 megaHz
 

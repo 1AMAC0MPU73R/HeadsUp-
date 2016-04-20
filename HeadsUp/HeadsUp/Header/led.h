@@ -1,18 +1,9 @@
-/*
- * led.h
- *
- * Created: 4/13/2016 4:11:18 PM
- *  Author: Jack
- */ 
-
-
-#ifndef LED_H_
-#define LED_H_
+#ifndef _LED_H_
+#define _LED_H_
 
 
 #include <avr/io.h>
-#include <util/delay.h>
-#include <assert.h>
+
 
 #define LED_OC1B_OUTPUT			PORTD4
 #define LED_OC1A_OUTPUT			PORTD5
@@ -27,8 +18,7 @@ class led{
 	public:
 		led();
 
-		void set(double ledLevel);
-
+		void set( uint8_t ledLevel );
 	private:
 		void INIT();
 		void ENABLE();
@@ -37,4 +27,4 @@ class led{
 };
 
 
-#endif /* LED_H_ */
+#endif /* _LED_H_ */
