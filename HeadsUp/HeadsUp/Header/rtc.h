@@ -1,8 +1,10 @@
 #ifndef _RTC_H_
 #define _RTC_H_
 
+#include <util/delay.h>
 #include <string.h>
 #include <avr/io.h>
+#include <avr/interrupt.h>
 
 
 #define SS_PIN			PB4		/* Slave Select */

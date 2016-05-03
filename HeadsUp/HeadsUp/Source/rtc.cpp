@@ -1,5 +1,3 @@
-#include <avr/io.h>
-#include <util/delay.h>
 #include "rtc.h"
 
 
@@ -188,13 +186,13 @@ void rtc::rtm_to_char( rtc_time rtmToConvert, unsigned char* uchToReturn, unsign
 	valDay = ((( rtmToConvert.ucDay >> 4 ) & 0x0F ) * 10 ) + (( rtmToConvert.ucDay ) & 0x0F );
 	valDays = chrDays[(( valDay == 0 ) ? 0 : valDay - 1 ) * 2];
 	valDays |= chrDays[((( valDay == 0 ) ? 0 : valDay - 1 ) * 2 ) + 1] << 8;
-	valDays |= (( uint16_t )( chrDays[((( valDay == 0 ) ? 0 : valDay - 1 ) * 2 ) + 2])) << 16;
+	valDays |= ( static_cast<uint16_t>( chrDays[((( valDay == 0 ) ? 0 : valDay - 1 ) * 2 ) + 2])) << 16;
 	valMonth &= 0x00;
 	valMonths &= 0x00000000;
 	valMonth = ((( rtmToConvert.ucMonth >> 4 ) & 0x0F ) * 10 ) + (( rtmToConvert.ucMonth ) & 0x0F );
 	valMonths = chrMonths[(( valMonth == 0 ) ? 0 : valMonth - 1 ) * 3];
 	valMonths |= chrMonths[((( valMonth == 0 ) ? 0 : valMonth - 1 ) * 3 ) + 1] << 8;
-	valMonths |= (( uint32_t )( chrMonths[((( valMonth == 0 ) ? 0 : valMonth - 1 ) * 3 ) + 2])) << 16;
+	valMonths |= ( static_cast<uint32_t>( chrMonths[((( valMonth == 0 ) ? 0 : valMonth - 1 ) * 3 ) + 2])) << 16;
 	valDates &= 0x0000;
 	valDates |= (( rtmToConvert.ucDate & 0xF0 ) + 0x0300 ) << 4;
 	valDates |= ( rtmToConvert.ucDate & 0x0F) + 0x0030;

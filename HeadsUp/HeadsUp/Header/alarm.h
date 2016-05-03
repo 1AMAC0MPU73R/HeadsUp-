@@ -23,19 +23,6 @@
 #define ALARM_LIGHT_3_NAME 'Pulse'
 
 
-
 typedef uint8_t tone;		/* ALARM TYPES */
-
-
-
-class time {
-	public:
-		time time();							/* TIME DEFAULT CONSTRUCTOR */
-
-	private:
-		time timActivation;							/* DATA MEMBERS */
-		tone tonAlarm;
-};
-
 
 #endif 
