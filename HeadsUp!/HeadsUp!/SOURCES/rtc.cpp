@@ -151,7 +151,7 @@ void rtc::set_time( rtc_time* rtmSetTime ){
 }
 
 
-void rtc::rtm_to_char( rtc_time rtmToConvert, unsigned char* uchToReturn, unsigned int valCharLen ){
+void rtc::rtm_to_char( rtc_time rtmToConvert, unsigned char* chrToReturn, unsigned int valCharLen ){
 	
 	unsigned char uchTimeOut[ valCharLen ];
 	uint8_t valTimeLength = RTC_DISP_LEN;
@@ -211,10 +211,10 @@ void rtc::rtm_to_char( rtc_time rtmToConvert, unsigned char* uchToReturn, unsign
 	uchTimeOut[valTextOffset + 11] = valMonths & 0xFF;
 	uchTimeOut[valTextOffset + 12] = ( valMonths >> 8 ) & 0xFF;
 	uchTimeOut[valTextOffset + 13] = ( valMonths >> 16 ) & 0xFF;
-	uchTimeOut[valTextOffset + 14] = valDates & 0x00FF;
-	uchTimeOut[valTextOffset + 15] = valDates >> 8;
+	uchTimeOut[valTextOffset + 14] = valDates >> 8;
+	uchTimeOut[valTextOffset + 15] = valDates & 0x00FF;
 
-	memcpy( uchToReturn, uchTimeOut, valCharLen );
+	memcpy( chrToReturn, uchTimeOut, valCharLen );
 
 }
 
@@ -281,22 +281,69 @@ void rtc::clear_interupt( uint8_t valAlarm01 ){
 
 void rtc::alarm( uint8_t valGetSet, uint8_t valAlarm01, rtc_alarm rtaToSetOrGet ){
 	
-	unsigned char valAlarmAddress { 0x00 };
+	unsigned char chrAlarmAddress { 0x00 };
+	unsigned char chrSec { 0x00 };
+	unsigned char chrDay { 0x80 };
 
 
 	if( !valAlarm01 ){
-			valAlarmAddress = RTC_ADDR_A0S;
+			chrAlarmAddress = RTC_ADDR_A0S;
 	}else if( valAlarm01 ){
-		valAlarmAddress = RTC_ADDR_A1S;
+		chrAlarmAddress = RTC_ADDR_A1S;
 	}
 	
 	if ( !valGetSet ){
-		read_block( valAlarmAddress, ( unsigned char* )&rtaToSetOrGet, sizeof( rtc_alarm ));
+		read_block( chrAlarmAddress + sizeof( chrSec ), ( unsigned char* )&rtaToSetOrGet, sizeof( rtc_alarm ));
 	}else if( valGetSet ){
 		alarm_off( valAlarm01 );
-		write_block( valAlarmAddress, ( unsigned char* )&rtaToSetOrGet, sizeof( rtc_alarm ));
+		write_block( chrAlarmAddress, ( unsigned char* )&chrSec, sizeof( chrSec ));
+		write_block( chrAlarmAddress + sizeof( chrSec ), ( unsigned char* )&rtaToSetOrGet, sizeof( rtc_alarm ));
+		write_block( chrAlarmAddress + sizeof( chrSec ) + sizeof( rtc_alarm ), ( unsigned char* )&chrDay, sizeof( chrDay ));
 		alarm_on( valAlarm01 );
 	}
+}
+
+
+void rtc::char_to_alarm( unsigned char* chrToConvert, rtc_alarm* almToReturn){
+	
+	almToReturn->ucMinutes = (( chrToConvert[2] - 0x30 ) << 4 ) | ( chrToConvert[3] - 0x30 );
+	almToReturn->ucHours = (( chrToConvert[0] - 0x30 ) << 4 ) | ( chrToConvert[1] - 0x30 );
+	almToReturn->ucHours |= 0x40;
+	if( chrToConvert[4] == 'A' ){
+		almToReturn->ucHours &= 0xDF;
+	}else{
+		almToReturn->ucHours |= 0x20	;
+	}
+	
+}
+
+/* HHMMPDDMMMDD */
+void rtc::char_to_rtm( unsigned char* chrToConvert, rtc_time* tmeToReturn){
+	
+	unsigned char chrDay[3]{"DD"};
+	unsigned char chrMonth[4]{"MMM"};
+	char* chrStr;
+	
+	
+	tmeToReturn->ucSeconds = 0x00;
+	tmeToReturn->ucMinutes = (( chrToConvert[2] - 0x30 ) << 4 ) | ( chrToConvert[3] - 0x30 );
+	tmeToReturn->ucHours = (( chrToConvert[0] - 0x30 ) << 4 ) | ( chrToConvert[1] - 0x30 );
+	tmeToReturn->ucHours |= 0x40;
+	if( chrToConvert[4] == 'A' ){
+		tmeToReturn->ucHours &= 0xDF;
+		}else{
+		tmeToReturn->ucHours |= 0x20	;
+	}
+	chrDay[0] = chrToConvert[5];
+	chrDay[1] = chrToConvert[6];
+	tmeToReturn->ucDay = (( (int)( strstr( reinterpret_cast<const char*>(chrDays), reinterpret_cast<const char*>(chrDay) )) - (int)&chrDays[0] ) / 2 ) + 1;
+	tmeToReturn->ucDate = (( chrToConvert[10] - 0x30 ) << 4 ) | ( chrToConvert[11] - 0x30 );
+	chrMonth[0] = chrToConvert[7];
+	chrMonth[1] = chrToConvert[8];
+	chrMonth[2] = chrToConvert[9];
+	tmeToReturn->ucMonth = (( (int)( strstr( reinterpret_cast<const char*>(chrMonths), reinterpret_cast<const char*>(&chrMonth[0]) )) - (int)&chrMonths[0] ) / 3 ) + 1;
+	tmeToReturn->ucYear = 0x00;
+	
 }
 
 
