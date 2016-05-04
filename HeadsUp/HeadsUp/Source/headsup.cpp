@@ -109,6 +109,7 @@ void Test_On_PortA0(){
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ISR( PCINT0_vect ){
 	
 	unsigned char chrPinA;
@@ -173,6 +174,10 @@ ISR( PCINT0_vect ){
 
 
 >>>>>>> Stashed changes
+=======
+
+
+>>>>>>> Stashed changes
 
 
 void Menu_Main(){
@@ -185,6 +190,7 @@ void Menu_Main(){
 	uint8_t valMenuState{ MAIN_STATE_ALARMS };
 	uint8_t valCursorState{ CURSOR_OFF };
 	uint8_t valCursorDivider{ 0 };
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -215,6 +221,8 @@ void Menu_Main(){
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 	extern uint8_t valLastPress;
 
 
@@ -228,6 +236,9 @@ void Menu_Main(){
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -345,6 +356,9 @@ void build_menu_main( const char chpStates[MENU_LEN_MAX][MENU_WID_MAX], unsigned
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -355,23 +369,9 @@ void build_menu_main( const char chpStates[MENU_LEN_MAX][MENU_WID_MAX], unsigned
 				valN++;	
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
-			}
-			memcpy( ( void* )&chrOutput[ valN - 1 ], ( void* )&chpStates[ valQ - 1 ][ valN - 1 ], sizeof( char ));
-			if( chrOutput[ valN - 1] != 0 ){
-				valN++;	
-			}
-			if( valN== sizeof( chrOutput )){
-				memcpy( chrReturn, chrOutput, sizeof( chrReturn ));
-				return;
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 			}
 			memcpy( ( void* )&chrOutput[ valN - 1 ], ( void* )&chpStates[ valQ - 1 ][ valN - 1 ], sizeof( char ));
 			if( chrOutput[ valN - 1] != 0 ){
@@ -380,6 +380,21 @@ void build_menu_main( const char chpStates[MENU_LEN_MAX][MENU_WID_MAX], unsigned
 			if( valN== sizeof( chrOutput )){
 				memcpy( chrReturn, chrOutput, sizeof( chrReturn ));
 				return;
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+			}
+			memcpy( ( void* )&chrOutput[ valN - 1 ], ( void* )&chpStates[ valQ - 1 ][ valN - 1 ], sizeof( char ));
+			if( chrOutput[ valN - 1] != 0 ){
+				valN++;	
+			}
+			if( valN== sizeof( chrOutput )){
+				memcpy( chrReturn, chrOutput, sizeof( chrReturn ));
+				return;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -391,6 +406,9 @@ void build_menu_main( const char chpStates[MENU_LEN_MAX][MENU_WID_MAX], unsigned
 =======
 >>>>>>> Stashed changes
 			}
+=======
+			}
+>>>>>>> Stashed changes
 =======
 			}
 >>>>>>> Stashed changes
@@ -399,6 +417,7 @@ void build_menu_main( const char chpStates[MENU_LEN_MAX][MENU_WID_MAX], unsigned
 				return;
 			}
 		}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -434,6 +453,8 @@ void build_menu_main( const char chpStates[MENU_LEN_MAX][MENU_WID_MAX], unsigned
 =======
 			}
 		}
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
